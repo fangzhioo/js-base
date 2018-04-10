@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<form>
+			用户姓名:<input type="text" id="name" name="name" />
+			<br />
+			密码：<input type="password" id="pass" name="pass" />
+			<br />
+			爱好：<input type="radio" value="足球" checked="checked"/>足球
+				<input type="radio" value="篮球" />篮球
+				<br />
+			运动：<input type="checkbox" value="登山" />登山
+				<input type="checkbox" value="游泳" />游泳
+				<br />
+			时间：<select name="selcet" disabled="disabled">
+					<option>2001</option>
+					<option>2001</option>
+					<option>2001</option>
+				</select>
+				<br />
+			<input type="submit" value="提交"/><br />
+			<input type="button" value="注册" /><br />
+			<input type="reset" value="重置" /><br />
+		</form>
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		
+		<script>
+			//$('#name')  $('[name = name]')
+			//通过type的值获取相应的标签
+			var user = $(':text');
+			console.log(user);
+			
+			var pass = $(':passWord');
+			console.log(pass);
+			
+			var radioI = $(':radio');
+			console.log(radioI);
+			
+			var checkBox = $(':checkbox');
+			console.log(checkBox);
+			//拿到选中的input标签
+			var checked = $(':checked');
+			console.log(checked.val());
+			//select没有type类型
+			var selectI = $('[name = select]') ;
+			console.log(selectI);
+			//拿到不能点击的标签
+			var disable =$(':disabled');
+			console.log(disable);
+			//拿到可以被点击的标签
+			var able = $(':enabled');
+			console.log(able);
+			//提交
+			var submitI = $(':submit');
+			console.log(submitI);
+			//重置
+			var resetI = $(':reset');
+			console.log(resetI);
+			//按钮
+			var buttonI = $(':button');
+			console.log(buttonI);
+			/*
+			 * 选择器的优化：
+			 * 1.多用id选择器
+			 * 2.class选择器尽量少用
+			 * 3.多用父子选择器，少用包含选择器
+			 * 4.尽量缓存JQ获取的DOM元素
+			 * */
+		</script>
+		
+		
+		
+	</body>
+</html>

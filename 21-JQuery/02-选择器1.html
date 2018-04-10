@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<p name = "myP">第一个p标签</p>
+		<p id="myP">id为myP的p标签</p>
+		<span class="myClass">class为myClass的span</span>
+		<p name = "myName">name为myName的p标签</p>
+		<input name="myName" class="input" type="botton" value="按钮"/>
+		<p style="display: none;"></p>
+		
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script>
+			//JQ最方便的一个功能就是DOM操作
+			//JQ中利用选择器的特点，非常方便的方式操作DOM元素
+			
+			//1.id选择器     利用id获取元素
+			//var p = document.getElementById('myP');
+			var p = $('#myP');//JQuery对象，不是DOM对象
+			
+			//2.class选择器
+			var span = $('.myClass');//类数组的对象
+			console.log(span);
+			//所有p标签
+			var ps = $('p');
+			console.log(ps);
+			
+			var domP = p.get(0);//JQuery转成DOM对象
+			domP.innerHTML = "aaaaaaa";
+			console.log(domP.innerHTML);
+			//html() 设置innerHTML
+			console.log(p.html());
+			p.html('BBBBBBBBB');
+			//DOM对象也能转成JQuery对象
+			var pp = $(domP);
+			
+			//3.属性选择器
+			//通过属性获取DOM元素
+			var attr1 = $('[name = myName]');
+			//拿到所有的
+			console.log(attr1);
+			console.log(attr1.html());
+			
+			//^以什么为开始        所有name属性以my开头的标签
+			var attr2 = $('[name ^= my]');
+			console.log(attr2);
+			//所有name属性以P结束的标签
+			var attr3 = $('[name $= P]');
+			console.log(attr3);
+			//指定拿到某类标签
+			var attr4 = $('input[name = myName]');
+			console.log(attr4);
+			//val() 访问value值
+			console.log(attr4.val());
+			
+			//4.组合选择器
+			//拿到class为iput的iput标签
+			var inp = $('input.input');
+			
+			//5.伪类选择器
+			//拿到所有显示的p标签
+			var pv = $('p:visible');
+			console.log(pv);
+			//获取所有隐藏的p标签
+			var ph = $('p:hidden');
+			console.log(ph);
+		</script>
+	</body>
+</html>

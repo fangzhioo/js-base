@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div id="main">
+			
+		</div>
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script>
+			
+			//加载一个页面   同步   GET请求
+			//$('#main').load('02-选择器1.html');
+			
+			//通过选择加载某个页面标签
+			//$('#main').load('02-选择器1.html #myP');
+			
+			//传一个function参数  response就是加载的内容
+			/*$('#main').load('02-选择器1.html',function(response,status,state){
+				console.log(response);
+				//获取数据的状态  成功 success 失败error
+				console.log(status);
+				//响应的对象   --- 属性status 状态码
+				console.log(state.status);
+			});*/
+			
+			//第二个参数是请求url?号后面参数，写了这个参数会变成post请求
+			//$('#main').load('02-选择器1.html',{name:'li'});
+			
+			//解析json数据
+			$.getJSON('car.json',function(respose){
+				//response 解析后的对象
+				console.log(respose);
+			})
+		</script>
+		
+		<form id="login">
+			<p>
+				用户名：<input type="text" name="user" />
+			</p>
+			<p>
+				密码：<input type="password" name="pass" />
+			</p>
+			<p>
+				性别：<input type="radio" name="sex" value="男" checked="checked" />男
+					 <input type="radio" name="sex" value="女">女
+			</p>
+			<p>
+				<input type="button"  id="lg" value="登陆" />
+			</p>
+		</form>
+		<script>
+			
+			$('#lg').click(function(){
+				//serialize 表单序列化    编码
+				console.log($('#login').serialize());
+				//decodeURIComponent反编码
+				console.log(decodeURIComponent($('#login').serialize()));
+				/*
+				$.ajax({
+					type:"post",
+					url:"www.baidu.com",
+//					data:{//post请求的参数需要写道data配置属性中
+//						//获取表单中用户输入的内容
+//						user : $('[name = user]').val(),
+//						pass : $('[name = pass]').val(),
+//						sex : $('[name = sex]').val()
+//					}
+					data : $('#login').serialize(),//user=1111&pass=1111&sex=%E7%94%B7
+					async:true,
+					success : function(data){
+						console.log(data);
+					}
+				});*/
+				
+			})
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="div1">div</div>
+		<p id="p1">ppppppppppp</p>
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		
+		<script>
+			
+			var div1 = $('#div1');
+			//设置宽高 可以直接传数值
+			div1.width('200px').height(200);
+			//width()获取返回的是数值
+			console.log(div1.width());
+			//css设置css样式
+			div1.css('background-color','red');
+			//可以传对象，属性值和属性名
+			div1.css({
+				'color' : '#fff',
+				'text-align' : 'center',
+				'width' : 400,
+				'position' : 'absolute',
+				'left' : 10,
+				'top' : 20
+			})
+			//定位父级
+			console.log(div1.offsetParent());
+			//偏移量
+			var offset = div1.offset();
+			console.log(offset.left,offset.top);
+			
+			console.log(div1.scrollTop());
+			
+			div1.css({
+				'width' : function(){
+					return 100;
+				}
+			})
+			
+		</script>
+		
+		
+		
+		
+	</body>
+</html>

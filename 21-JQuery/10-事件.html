@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.my_class{
+				width: 200px;
+				height: 200px;
+				background-color: green;
+			}
+			.my_class1{
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="div1">事件</div>
+		
+		<button id="btn">按钮</button>
+		
+		<div class="my_class"></div>
+		
+		<input type="button" value="按钮1" />
+		<input type="button" value="按钮2" />
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		
+		<script>
+			
+			var div1 = $('#div1');
+			//绑定click事件
+			div1.click(function(){
+				console.log('被点了');
+				
+			}).blur(function(){
+				
+				
+			}).dblclick(function(){
+				console.log('双击');
+				
+			}).mousedown(function(){
+				
+				
+			}).mouseenter(function(){
+				
+				
+			}).mouseleave(function(){
+				
+				
+			}).mouseup(function(){
+				
+				
+			}).mouseout(function(){
+				
+				
+			}).keydown(function(){
+				
+				
+			}).keypress(function(){
+				
+				
+			}).keyup(function(){
+				
+			})
+			
+			
+			var btn = $('#btn');
+			//绑定事件
+			btn.on('click',function(){
+				console.log('点击了');
+			})
+			
+			function show(e){
+				e = e || window.event;
+				//需要通过event对象的data属性获取参数
+				//data = {a:1,b:2}
+				console.log(e.data.a,e.data.b);
+			}
+			//第二个参数是绑定的函数的参数
+			btn.on('click',{a:1,b:2},show);//e.data = {a:1,b:2};
+			
+			//hover  鼠标悬停和离开，可以传两个参数（
+			//两个方法，一个鼠标悬停，一个是离开要出发的方法）
+			/*$('.my_class').hover(function(){
+				
+				$(this).addClass('my_class1');
+			},function(){
+				
+				$(this).removeClass('my_class1');
+			});*/
+			
+			$('.my_class').hover(function(){
+				//切换
+				$(this).toggleClass('my_class1');
+			});
+			
+			//on 可以同时绑定多个事件'click mouseover'
+			$('[value = 按钮1]').on('click mouseover',function(e){
+				//type 事件触发类型
+				if(e.type == 'click'){
+					console.log('按钮1被点击了');
+				}else if(e.type == 'mouseover'){
+					console.log('按钮1鼠标滑入');
+				}
+			})
+			//移除事件
+			$('[value = 按钮1]').off('click');
+			
+			//click.me 事件的命名空间  本质还是click事件
+			$('[value = 按钮1]').on('click.me', function(){
+				console.log('点击我');
+			})
+			$('[value = 按钮1]').on('click.you', function(){
+				console.log('点击你');
+			})
+			//通过事件的命名空间移除指定的click事件
+			$('[value = 按钮1]').off('click.me');
+			
+			//只触发一次绑定的事件
+			$('[value = 按钮2]').one('click',function(e){
+				console.log('按钮2');
+				//事件类型
+				console.log(e.type);
+				//事件触发的元素
+				console.log(e.target);
+				console.log(e.pageX);
+				console.log(e.pageY);
+				console.log(e.data);
+				//阻止默认行为
+				e.preventDefault();
+				//阻止冒泡
+				e.stopPropagation()
+			})
+			
+			
+			
+			
+		</script>
+		
+		
+		
+	</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.my_class{
+				background-color: red;
+				width: 300px;
+				height: 300px;
+				position: absolute;
+				left: 300px;
+				display: none;
+				top : 0;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="my_class"></div>
+		
+		<input type="button" value="show" />
+		<br />
+		<input type="button" value="hide" />
+		<br />
+		<!--((input[type='button' value=""])>br)*9-->
+		<input type="button" value="toggle" />
+		<br />
+		<input type="button" value="fadeIn" />
+		<br />
+		<input type="button" value="fadeOut" />
+		<br />
+		<input type="button" value="slideDown" />
+		<br />
+		<input type="button" value="slideUp" />
+		<br />
+		<input type="button" value="slideToggle" />
+		<br />
+		<input type="button" value="animate" />
+		<br />
+		<input type="button" value="stop" />
+		<br />
+		<input type="button" value="delay" />
+		<br />
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script>
+			var div = $('.my_class');
+			//显示
+			$('[value = show]').click(function(){
+				//show
+				//div.show();//直接显示
+				
+				//div.show(3000);//毫秒  延迟显示
+				
+				//div.show('fast');
+				/*关于速度的关键字：
+				 * fast  快
+				 * normal 正常
+				 * slow 慢
+				 */
+				/*通过下面方法可以修改速度关键字的默认值
+				 * JQuery.fx.speeds.fast = 毫秒
+				 * JQuery.fx.speeds.normal = 毫秒
+				 * JQuery.fx.speeds.slow = 毫秒
+				 * 
+				 */
+//				jQuery.fx.speeds.slow = 5000;
+//				div.show('slow');
+				//自定义速度关键字
+				jQuery.fx.speeds.mySlow = 2000;
+				div.show('mySlow');
+			})
+			
+			$('[value = hide]').click(function(){
+				//隐藏
+				div.hide(3000);
+			})
+			
+			$('[value = toggle]').click(function(){
+				//切换
+				div.toggle(2000);
+			})
+			
+			//控制opacity的值
+			$('[value = fadeIn]').click(function(){
+				//fadeIn淡入
+				div.fadeIn(3000);
+			})
+			$('[value = fadeOut]').click(function(){
+				//fadeOut淡出
+				div.fadeOut(3000);
+			})
+			
+			//控制height值
+			$('[value = slideDown]').click(function(){
+				//向下滑动
+				div.slideDown(3000);
+			})
+			$('[value = slideUp]').click(function(){
+				//向上滑动
+				div.slideUp(3000);
+			})
+			
+			//animate自定义动画
+			$('[value = animate]').click(function(){
+				
+				div.animate({
+					left : 500,
+					opacity :  0.25
+				},3000,function(){
+					console.log('第一个动画执行完毕');
+					div.animate({
+						top : 200,
+						opacity : 1
+//						backgroundColor:'green'
+					},2000,function(){
+						console.log('第二个动画执行完毕');
+					})
+				})
+			})
+			
+			$('[value = stop]').click(function(){
+				//停止动画
+				div.stop();
+			})
+			
+			$('[value = delay]').click(function(){
+				//延时执行动画
+				div.fadeIn(2000).delay(2000).fadeOut(1000);
+			})
+			
+		</script>
+	</body>
+</html>

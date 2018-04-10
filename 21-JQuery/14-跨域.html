@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		
+		<script>
+			//JQ跨域处理
+			$.ajax({
+				url : 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=wwww&cb=?',
+				dataType : 'jsonp',
+				jsonpCallback : 'cb',//对应的是接口中需要回调函数的参数名
+				success : function(data){
+					console.log(data);
+				},
+				error : function(){
+					console.log('fail');
+				}
+			});
+			
+			//JQ跨域更简便的写法
+			$.getJSON('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=wwww&cb=?',function(data){
+				console.log(data);
+			});
+			
+			
+		</script>
+		
+	</body>
+</html>

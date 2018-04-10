@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<!--自定义的jq插件-->
+		<script src="js/jQuery.date.js"></script>
+		<script>
+			/*1.什么JQ插件：
+			 * 插件（Plugin）也称JQ扩展，在JQ的基础上实现的一些其他的功能，
+			 * 其核心还是JQ的代码，这种js封装称为JQ插件
+			 * 
+			 * 2.插件的分类：
+			 * UI类、表单类、输入类、特效类、Ajax、导航、图形、滑动.....
+			 * 
+			 * 3.插件的引入：
+			 * 首先要引入JQ，而且一定要在这个插件之前引入，
+			 * 然后再引入插件
+			 * 
+			 * 4.如何自定义（自己封装）JQ插件
+			 *   自定义插件的规范：
+			 * 		1.命名：通常是就jQuery.插件名.js
+			 * 		2.所有的方法都需要附加在jQuery对象或者是jQuery.fn上
+			 * 		3.所有的方法或插件必须要用分号结尾
+			 * 		4.插件方法必须返回jQuery对象，便于链式调用
+			 * 		5.避免插件内使用$,如果要使用，请传递jQuery对象
+			 * 		6.插件内部使用this指针应该指向jQuery对象
+			 * 		
+			 * 为了方便用户创建插件，jQuery提供了这样两个方法：
+			 * 		1.jQuety.fn.extend():扩展jQuery元素的方法/给jQuery元素提供新的方法
+			 * 			$('div').myFn();
+			 * 		2.jQuery.extend():扩展jQuery对象本身，在Jquery上添加新的方法
+			 * 			$.myFn();
+			 * 
+			 * 创建一个js文件，作为自定义jQuery插件的文件，
+			 * (function($){
+			 * 		$.fn.extend({
+			 * 			myFn : function(){ 插件的功能 }
+			 * 		})
+			 * 		$.extend({
+			 * 			myFn : function(){ 插件的功能 }
+			 * 		})
+			 * })(jQuery)
+			 * 
+			 *
+			 * */
+			
+			var date = new Date();
+			console.log(date);
+			console.log($.getDateSting(date));
+			
+		</script>
+		
+		
+		
+		
+		
+	</body>
+</html>

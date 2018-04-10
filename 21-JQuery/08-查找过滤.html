@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div id="div1">
+			<ul id="list">
+				<!--(li>a>span)*10-->
+				<li><a href=""><span><h1></h1></span></a></li>
+				<li><a href=""><span></span></a></li>
+				<li><a href=""><span></span></a></li>
+				<li><a href=""><span></span></a></li>
+				<li><a href=""><span></span></a></li>
+				<li><a href=""><span></span></a></li>
+				<li><a href=""><span></span></a></li>
+				<li><a href=""><span></span></a></li>
+				<li><a href=""><span></span></a></li>
+				<li><a href=""><span></span></a></li>
+			</ul>
+		</div>
+		
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		
+		<script>
+		
+			var div1 = $('#div1');
+			console.log(div1);
+			console.log(typeof div1);
+			console.log(div1.innerHTML);//undefined
+			//用JQ获取的元素是以属性值的方式存储在返回的对象上的
+			//获取到真正的DOM对象
+			//var divDom = div1.get(0);
+			var divDOM = div1[0];
+			console.log(divDOM);
+			
+			var liArr = $('#list>li');
+			console.log(liArr);
+			//eq 查找某个元素的方法
+			console.log(liArr.eq(2)[0]);//索引
+			
+			//获取所有li下的a标签
+			var aArr = $('#div1>#list>li>a');
+			//所有a标签中第一个a标签
+			console.log(aArr[0]);
+			//find查找标签      链式调用
+			var a = $('#div1').find('#list').eq(0).find('li').eq(0).find('a');
+			console.log(a[0]);
+			
+			function Person(){
+				this.eat=function(){
+					console.log('eat');
+					return this;
+				};
+				this.run=function(){
+					console.log('run');
+					return this;
+				};
+				this.play=function(){
+					console.log('play');
+					return this;
+				};
+			}
+			
+			var per = new Person();
+//			per.eat();
+//			per.run();
+//			per.play();
+			per.eat().run().play();
+			
+			//parent 获取父级元素
+			console.log(a.parent());
+			//parents所有的父辈级元素
+			console.log(a.parents());
+			//children 获取子级标签
+			console.log(a.children().children());
+			//siblings 所有兄弟节点
+			console.log(a.parent().siblings());
+			//next 相邻的下一个标签
+			console.log(a.parent().next());
+			console.log(a.parent().nextAll());
+			//判断是不是某个标签
+			console.log(a.parent().is('li'));//true
+			//判断这个标签有没有这个class
+			console.log(a.hasClass('class'));//false
+			//prev 查找亲一个标签
+			console.log(a.parent().next().prev());
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

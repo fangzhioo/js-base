@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div id="div1"></div>
+		
+		<div id="div2"></div>
+		
+		<div id="div3"></div>
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		
+		<script>
+//			document.createElement();
+//			document.createTextNode();
+			var p = $('<p>这是一个p标签</p>');
+			var div1 = $('#div1');
+			//appendChild()
+			//添加元素  追加在末尾
+			div1.append(p);
+			
+			var p1 = $('<h1><p>h1中有p标签</p></h1>');
+			var div2 = $('#div2');
+			//添加元素  覆盖/替换
+			div2.html(p1);
+			
+			var h = $('<h2>标题2</h2>')
+			var div3 = $('#div3');
+			//添加元素  把某个标签添加到指定标签下
+			h.appendTo(div3);
+			//添加文本  覆盖
+			div3.text('这是div3');
+			
+			var a = $('<a href="#">百度</a>');
+			//插入到某个元素之后
+			a.insertAfter(div3);
+			
+			var b = $('<b>这是一个b标签</b>');
+			//插入到某个元素之前
+			b.insertBefore(div3);
+			//在标签后面添加内容
+			b.after('这是一个文本');
+			//在标签之前添加内容
+			b.before('这也是一个文本');
+			
+			//删除某个元素（删除自身）
+			p.remove();
+			
+			var p2 = $('<p>这是一个替换的p标签</p>');
+			//替换元素  把某个标签替换成另一个标签
+			div2.replaceWith(p2);
+			
+			//可克隆标签（true连属性和内容一起克隆）
+			var p3 = p2.clone(true);
+			console.log(p3);
+			
+			//包装/包裹  在a标签外层父级包裹一个新标签
+			a.wrap('<h1></h1>');
+			
+			
+		</script>
+	</body>
+</html>

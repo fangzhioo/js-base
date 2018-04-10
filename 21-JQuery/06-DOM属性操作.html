@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div id="div1">Lorem ipsum dolor.</div>
+		<a id="link">Lorem ipsum.</a>
+		<img />
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script>
+			
+			var linkA = $('#link');
+			//设置标签的属性attr()
+			linkA.attr('href','https://www.baidu.com');
+			var img = $('img');
+			//img.attr('src','js/1.png');
+			//给标签添加class
+			linkA.addClass('mylink');
+			linkA.addClass('mylink');
+			//删除class
+			linkA.removeClass('mylink');
+			
+			var div1 = $('#div1');
+			//切换  (没有就是添加class，有就是删除class)
+			div1.toggleClass('myDiv');
+			div1.toggleClass('myDiv');
+			//删除属性
+			linkA.removeAttr('href');
+			
+			
+		</script>
+		
+	</body>
+</html>

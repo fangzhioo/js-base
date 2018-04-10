@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			/*.list>li:first-child{
+				color: red;
+			}*/
+		</style>
+	</head>
+	<body>
+		
+		<div class="div1">
+			<ul class="list">
+				<!--(li.li${list$})*8-->
+				<li class="li1">list1</li>
+				<li class="li2">list2</li>
+				<li class="li3">list3</li>
+				<li class="li4">list4</li>
+				<li class="li5">list5</li>
+				<li class="li6">list6</li>
+				<li class="li7">list7</li>
+				<li class="li8">list8</li>
+			</ul>
+		</div>
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script>
+			//特定位置选择器 --- 伪类选择器
+			var li = $('.li1');
+			console.log(li);
+			//拿第一个
+			var li1 = $('.list>li:first');
+			console.log(li1);
+			//拿最后一个
+			var li8 = $('.list>li:last');
+			console.log(li8);
+			//拿到偶数的标签
+			var lieven = $('.list>li:even');
+			console.log(lieven);
+			//拿到奇数位的标签
+			var liodd = $('.list>li:odd');
+			console.log(liodd);
+			//匹配所有大于给定索引的元素
+			var ligt = $('.list>li:gt(2)');
+			console.log(ligt);
+			//匹配所有小于给定索引的元素
+			var lilt = $('.list>li:lt(4)');
+			console.log(lilt);
+			//查找指定索引的元素
+			var lieq = $('.list>li:eq(2)');
+			console.log(lieq);
+			//排除选择器，去除所有与给定选择器匹配的元素
+			//（）内写选择器
+			var linot = $(':not(li)');
+			console.log(linot);
+			
+			
+		</script>
+		
+	</body>
+</html>

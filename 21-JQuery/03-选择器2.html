@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.p1+span{
+				
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="div1">
+			<p class="p1">Lorem ipsum dolor sit.</p>
+			<span class="sp1">Lorem ipsum dolor sit.</span>
+			<div class="div2">
+				<p class="p2">Lorem ipsum dolor sit.</p>
+			</div>
+			<div class="div3">Lorem ipsum dolor.</div>
+		</div>
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		
+		<script>
+			//1.包含选择器
+			var eles = $('.div1 p');
+			console.log(eles);
+			//2.子选择器
+			var p1 = $('.div1>p');
+			console.log(p1);
+			
+			var p2 = $('.div1>.div2>p');
+			console.log(p2);
+			
+			//3.相邻选择器
+			var sp = $('.p1 + span');
+			console.log(sp);
+			
+			//4.兄弟选择器
+			var div = $('.p1 ~ div');
+			console.log(div);
+			
+			
+		</script>
+		
+	</body>
+</html>

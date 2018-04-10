@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="msg"></div>
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script>
+		
+			//JQ的 ajax通用方法
+			$.ajax({
+				url : "car.json",//url地址/接口地址
+				dataType : 'json',//默认就是json
+				async : true,//是否异步
+				type : 'GET',//请求方式  默认也是GET
+				data : {'id' : 123456},//url参数 ？后面的参数
+				beforeSend : function(){//请求之前调用
+					console.log('请求之前做什么');
+				},
+				success : function(dataAll){//请求成功  参数就是返回的数据
+					//var data = JSON.parse(dataAll);
+					//dataAll 返回的就是解析后的数据
+					console.log(dataAll);
+				},
+				error : function(){//请求失败
+					console.log('请求失败');
+				},
+				complete : function(){//请求完成    不管是失败还是成功都会调用
+					console.log('请求完成');
+				}
+			})
+			
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

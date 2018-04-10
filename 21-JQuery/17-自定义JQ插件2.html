@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				height: 5000px;
+			}
+			.window{
+				background-color: #008000;
+				width: 290px;
+				height: 200px;
+				position: absolute;
+				display: none;/*开始时隐藏*/
+			}
+			.content{
+				height: 160px;
+				width: 100%;
+				text-align: center;
+				line-height: 160px;
+				font-size: 30px;
+			}
+			.title{
+				height: 40px;
+				width: 100%;
+				font-size: 25px;
+				line-height: 40px;
+				background-color: #999999;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="window" id="center">
+			<div class="title">天猫购物</div>
+			<div class="content">广告</div>
+		</div>
+		
+		<div class="window" id="left">
+			<div class="title">天猫购物</div>
+			<div class="content">广告</div>
+		</div>
+		
+		<div class="window" id="right">
+			<div class="title">天猫购物</div>
+			<div class="content">广告</div>
+		</div>
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/jQuery.window.js"></script>
+		<script>
+		
+			$('#center').myWindow({'left':'center','top':'center'}).show(1000);
+			
+			$('#left').myWindow({'left':'left','top':'bottom'}).show(1000);
+			
+			$('#right').myWindow({'left':'right','top':'top'},function(){
+				$('#right').fadeOut(500);
+			}).show(1000);
+		</script>
+		
+	</body>
+</html>
