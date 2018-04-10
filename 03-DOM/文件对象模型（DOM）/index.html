@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<h1 id='myh1'>liulaoshi</h1>
+		<h3>清哥好厉害啊！</h3>
+		<h4>同学们都太聪明了！</h4>
+		<script type="text/javascript">
+			
+			//节点类
+			console.log(Node.prototype);
+			//元素类 Element继承于Node 
+			console.log(Document.prototype);
+			console.log(Element.prototype);
+			//
+			console.log(Text.prototype);
+			//文档入口对象
+			console.log(typeof document);
+			console.log(document instanceof Document);
+			//document.getElementsByTagName('h1')[0].setAttribute('style','Color: red');
+			//nodeName 节点名
+			console.log(document.nodeName);
+			console.log(document.getElementById('myh1').nodeName);
+			//nodeValue	节点值
+			console.log(document.nodeValue);
+			var textnode = document.createTextNode('helloworld')
+			console.log(textnode.nodeValue);
+			//childNodes 子节点
+			console.log(document.childNodes);
+			console.log(document.getElementById('myh1').childNodes);
+			
+			//hasChildNodes()	判断有无节点
+			console.log(document.hasChildNodes());
+			
+			//appendChild()		添加子节点
+			//对body节点添加h2子节点，内容为清哥是个好老师
+			var bodyNode = document.getElementsByTagName('body')[0];
+			//创建h2节点（元素）
+			var h2Node =document.createElement('h2');
+			h2Node.innerText='清哥是个好老师';
+			//将h2Node加入bodyNode
+			bodyNode.appendChild(h2Node);
+			
+			//removeChild()		删除节点
+			var h1Node = document.getElementsByTagName('h1')[0];
+			bodyNode.removeChild(h1Node);
+			//insertBefore()	在某节点前插入节点 
+			//带插入的节点
+			var h5Node=document.createElement('h5');
+			h5Node.innerText='我骄傲了么！';
+			//参考位置节点
+			var h4Node=document.getElementsByTagName('h4')[0];
+			bodyNode.insertBefore(h5Node,h4Node);
+			
+			//repalceChild() 	
+			var h6Node =document.createElement('h6');
+			h6Node.innerText='快过年了，老师还没钱买年货呢！';
+			var h3Node =document.getElementsByTagName('h3')[0];
+			bodyNode.replaceChild(h6Node,h3Node);
+			
+			
+			
+			
+			
+		</script>
+	
+	</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//javascript --- 单线程
+			/* 
+			 * 线程:是进程的一部分，程序的一部分，（在很多其他编程语言中都可以自己开辟多个线程，例如java）
+			 * 		开辟线程主要是为了几个功能的同时执行，把不同的任务放在不同的线程中执行
+			 * 进程：一个程序开启运行，就是一个进程，一个程序只有一个进程
+			 * 
+			 * 操作线程，销毁线程都比较麻烦，需要特小心
+			 * 
+			 * js单线程，开辟不了其他线程，怎么操作几个任务同时进行？
+			 * 单线程的好处：实现简单
+			 * 多线程的坏处：需要同时执行多个任务的时候，开辟新的线程比较耗费内存
+			 * 单线程的坏处：在执行多个任务的时候，只有前面的任务执行完毕了，才能执行后面的任务，
+			 * 				如果前面的任务比较耗时，后面的任务就会等待，这样会造成浏览器假死的状态
+			 */
+			/*
+			 	同步：一次只能执行一个任务
+			 	异步：把任务分成几个部分，然后让让这个几个部分同时执行，
+			 		 通常我们会把耗时的任务进行异步处理（利用回调函数）
+			 * */
+			
+			//除了ajax数据请求会耗时，工程中也有可能出现比的耗时操作，
+			//比如大量计算，比如大量DOM元素的操作等等
+			
+			//模拟异步任务
+			console.log('-----1-----');
+			//定时器也是异步操作
+			setTimeout(function(){
+				console.log('------time-----');
+			},0);
+			console.log('-----2-----');
+			
+			//自定义异步任务函数,把耗时的操作或者就是想异步的操作放在异步任务函数中
+			function asynFn(arg,callback){
+				console.log('异步任务函数');
+				setTimeout(function(){
+					//callback参数是一个函数，代表想要异步操作的功能
+					callback(arg*2);
+				},0)
+			}
+			//把耗时的操作放到自定义的异步任务函数中，防止代码阻塞
+			asynFn(3,function(num){
+				//这是一分非常耗时的操作
+				console.log('这个人真的很耗时');
+				console.log(num);
+			});
+			console.log('-----3-------');
+			
+			
+			//调度五个异步任务  (串行：任务一个接一个执行)
+			asynFn(1,function(num){
+				asynFn(2,function(num){
+					asynFn(3,function(num){
+						asynFn(4,function(num){
+							asynFn(5,function(num){
+								console.log(num);
+							})
+							console.log(num);
+						})
+						console.log(num);
+					})
+					console.log(num);
+				})
+				console.log(num);
+			})
+			
+			
+			//编写串行函数
+			var items = [1,2,3,4,5];//items[5] = undefined
+			var results = [];
+			function series(item){
+				//如果数组里有元素
+				if(item){
+					//使用异步操作
+					asynFn(item,function(result){
+						//result 是item*2的结果  耗时的操作
+						//把操作结果添加到results数组中
+						results.push(result);
+						return series(items.shift());
+					});
+				}else{
+					//调用一个完成的函数
+					//当所有的耗时操作结束，使用的到的结果(results)
+					complied();
+				}
+				
+			}
+			function complied(){
+				//使用results数组去做一些功能
+				console.log(results);
+			}
+			series(items.shift());
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--传统事件绑定，有点：兼容性好，速度快
+			缺点：html和js结构与行为分离，这种写法对于维护非常不方便
+		-->
+		<button onclick="clik()">按钮</button>
+		<div id="div">点我点我</div>
+		<div id="div2">IE点点点</div>
+		<script>
+			//现代事件绑定（DOM2事件绑定） 高级事件绑定，
+			//虽然说是高级，但是并不好用，也不是特别常用
+			var div = document.getElementById('div');
+			
+//			div.onclick = function(){
+//				console.log('第一个')
+//			}
+//			div.onclick = function(){
+//				console.log('第二个')
+//			}
+			function fn(){
+				console.log('addEventListener');
+			}
+			//添加事件监听（事件句柄）非IE
+			div.addEventListener('click',fn,false);
+			//第一个参数：事件的名称【不需要加on】
+			//第二个参数：函数名/要执行的方法
+			//第三个参数：false 事件冒泡   true  事件捕捉（从外向里依次触发事件）
+			function fn1(){
+				console.log('第二个方法');
+			}
+			div.addEventListener('click',fn1,false);
+			//高级注册事件方式，可以在一个事件（click）绑定多个方法，可以依次执行
+			//而传统注册事件方式，后绑定会覆盖之前绑定方法
+			
+			//删除某个事件句柄
+			div.removeEventListener('click',fn,false);
+			
+			//IE
+			var div2 = document.getElementById('div2');
+			
+			function fn2(){
+				console.log('attachEvent');
+			}
+			//IE 高级事件注册的方式    默认就是事件冒泡
+			div2.attachEvent('onclick',fn2);
+			
+			
+			//删除句柄
+			div2.detachEvent('onclick',fn2);
+			
+			/*
+				 区别：1.IE不支持捕获，只支持冒泡
+				      2.IE添加时间不能屏蔽重复的函数
+				      3.IE中的this指向是window不是DOM对象
+				      4.传统事件上，IE无法接受event对象参数，Event是绑定在window上的
+				      5.在传统事件上，非IE能通过Event对象获取target，
+				               而IE不能，需要通过window.event.srcElement
+			 * 
+			 * */
+			//处理兼容
+//			if(div.addEventListener){
+//				div.addEventListener('click',fn,false);
+//			}
+//			if(div.attachEvent){
+//				div.attachEvent('onclick',fn);
+//			}
+//			if(div2.addEventListener){
+//				div2.addEventListener('click',fn,false);
+//			}
+//			if(div2.attachEvent){
+//				div2.attachEvent('onclick',fn);
+//			}
+			//处理高级事件的兼容性问题，我们可以封装成一个方法，方便以后调用
+			function addEvent(elem,type,fn){
+				//IE
+				if(elem.attachEvent){
+					elem.attachEvent('on'+type,fn)
+				}
+				//非IE
+				if(elem.addEventListener){
+					elem.addEventListener(type,fn,false);
+				}
+			}
+			//调用
+			addEvent(div,'click',fn);			
+		</script>
+		
+	</body>
+</html>

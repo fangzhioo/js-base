@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="base.js"></script>
+		<style>
+			#box1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+			#list{
+				width: 300px;
+				margin: 20px auto;
+				border:  1px solid #000;
+				list-style: none;
+				padding: 5px;
+			}
+			#list li{
+				padding: 5px;
+				height: 50px;
+				line-height: 50px;
+				border-bottom: 1px dashed #aaa;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box1" ></div>
+		
+		<script>
+			//Event事件是访问Web页面的用户引起的一系列操作。
+			//当用户执行操作的时候，再去执行一系列代码
+			//我们也可以获取事件的详细信息，如：鼠标位置，键盘按键等
+			
+			//Event事件是web程序的狠心，同通这些时间我们定义将要发生的行为
+			
+			//鼠标事件  键盘事件 HTML事件（表单事件、BOM事件/UI事件）
+			/*
+			 	onclick  鼠标点击/单击
+			 	ondblclick  鼠标双击
+			 	onmousedown  鼠标还未弹起/鼠标按下
+			 	onmouseup  鼠标抬起
+			 	onmouseover  鼠标移动到某个元素上
+			 	onmouseout  鼠标离开某个元素上
+			 	onmousemove 鼠标在元素上移动
+			 	
+			 * 
+			 * */
+			
+			var div = $('box1');
+			
+			div.onclick = function(){
+				console.log('单击')
+			}
+			div.ondblclick = function(){
+				console.log('双击')
+			}
+			div.onmousedown = function(){
+				console.log('按下')
+			}
+			div.onmouseover = function(){
+				console.log('悬浮')
+			}
+			div.onmouseup = function(){
+				console.log('抬起')
+			}
+			div.onmousemove = function(){
+				console.log('移动')
+			}
+			//当我们单击的时候，悬浮 -- 移动  -- 按下 --移动 --抬起 --单击 -- 移动
+			//双击：
+//                   悬浮
+//23Event事件1.html: 移动
+//Event事件1.html:48 按下
+//Event事件1.html:57 移动
+//Event事件1.html:54 抬起
+//Event事件1.html:42 单击
+//Event事件1.html:57 移动
+//Event事件1.html:48 按下
+//Event事件1.html:54 抬起
+//Event事件1.html:42 单击
+//Event事件1.html:45 双击
+//                   移动
+		</script>
+		
+		<ul id="list">
+			<li>我是一行li</li>
+			<li>我是一行li</li>
+			<li>我是一行li</li>
+			<li>我是一行li</li>
+			<li>我是一行li</li>
+		</ul>
+		
+		<script>
+			
+			var ul = $('list');
+			var alis = document.getElementsByTagName('li');
+			
+			//注册事件/绑定事件
+			for(var i = 0; i < alis.length; i++){
+				
+				//悬浮
+				alis[i].onmouseover = function(){
+					this.style.background = "blue";
+				}
+				
+				//鼠标离开
+				alis[i].onmouseout = function(){
+					this.style.background = "#fff";
+				}
+				
+				var timer;
+				//单击  让文字变成红色
+				alis[i].onclick = function(){
+	
+					//this.style.color = "red";
+					var self = this;
+					//延时操作
+					timer = setTimeout(function(){
+						//定时器中的this是指向window全局的
+						console.log(this);
+//						this.style.color = "red";
+						self.style.color = "red";
+					},500)
+					
+				}
+				
+				//双击 删除这一行
+				alis[i].ondblclick = function(){
+					
+					clearTimeout(timer);
+					ul.removeChild(this);7
+				}
+			}
+			
+		</script>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			
+			//js类型：null,undefine,boolean,string,number,array,object
+			
+			//隐士转换：不同类型的变量在做比较或者运算的时候，会出现类型的转换
+			//加减乘除 等于 大于 小于等等
+			
+			//字符串和数字的运算
+			
+			//数字和字符串相加  转成字符串
+			console.log(10 + '20');//"1020"
+			console.log(10 + '');//'10'
+			
+			//数字和字符串相减(乘、除、小于...)   转成数字
+			console.log(10 - '5');//5
+			
+			//数字减去分数值类型的字符串  转成NaN
+			console.log(10 - 'one');//NaN
+			
+			//undefine和null相等
+			console.log(undefined == null);//true
+			
+			//数值和布尔比较 布尔会转成数字
+			console.log(0 == false);//true
+			
+			console.log(2 == true);//false
+			//字符串转成数字  布尔转成数字进行的比较
+			console.log('0' == false);//true
+			
+			console.log(undefined  == false);//fasle
+			
+			//对象类型的转换
+			console.log(0 == []);//true  0 == [].valueOf()
+			console.log([].valueOf());
+			console.log('1' == [1]);//true  '0' == [].toString()
+			console.log([1].toString());
+			//[]空数组调用toString()并不是字符串‘0’
+			
+			//在数组的原型上修改了valueOf方法
+			Array.prototype.valueOf = function(){
+				return 1;
+			}
+			console.log(Object.prototype);
+			console.log(0 == [].valueOf());//false
+			
+			//其他的引用类型都是，如果和数字的运算调用的是对象的valueOf()方法
+			//如果是和字符串运算调用的是toString()方法
+			
+			console.log([] == []);//false
+			
+			var obj1 = {
+				s:10
+			}
+			var obj2 = {
+				s:10
+			}
+			//不是一个对象  所以指针不同/地址不同
+			console.log(obj1 == obj2);//false
+			
+			var obj3 = obj1;
+			//就是一个简单地赋值
+			console.log(obj3 == obj1);//true
+			
+			function fn(num1,num2){
+				var a = 1;
+				if(a == num1){
+					console.log('唉呀妈呀执行了');
+				}
+			}
+			//函数传什么参数和传几个参数都可以，所以会出现判断中隐士转换的问题
+			fn(1,2);
+			fn('a','b');
+			
+		</script>
+		
+		
+	</body>
+</html>

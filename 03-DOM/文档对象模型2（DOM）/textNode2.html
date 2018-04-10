@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>hello world</h1>
+		<script type="text/javascript">
+			var textnode=document.querySelector('h1').childNodes[0]
+			//追加文本节点
+			textnode.appendData('!!!')
+			
+			//删除文本
+			textnode.deleteData(11 , 3);
+			textnode.deleteData(5,1);
+			
+			//替换文本
+			textnode.replaceData(5,5,'世界')
+			
+			//插入文本
+			textnode.insertData(5,' ')
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			li{
+				width: 100px;
+				height: 20px;
+				background-color: red;
+				border: 2px solid yellow;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		
+		<script>
+			
+			//闭包：函数作为返回值或者函数作为参数,
+			//即使函数离开了创建他的环境，也能使用这个环境中的变量
+			
+	
+			function fn(){
+				var i = 0;
+			}
+			fn();//执行完毕后内部变量会被释放
+			
+			function fn1(){
+				var i = 11;
+				return function(){
+					return i;
+				}
+			}
+//			function ff(){
+//				console.log(i);
+//			}
+			var fn2 = fn1();
+			///console.log(fn2());//11
+			//好处：函数离开了创建他的环境，也能使用这个环境中的变量（局部变量）
+			//坏处：局部变量就会一直储存在内存中，增加内存开销
+			//能不用闭包就不适用闭包
+			
+			
+			//闭包的用处
+//			var arg = 0;
+			function fn3(){
+				var arg = 0;
+				function show(){
+					console.log(++arg);
+				}
+				show();
+			}
+			fn3();//1
+			fn3();//1
+			
+			function fn4(){
+				var i = 0;
+				return function(){
+					console.log(++i);
+				}
+			}
+			var fn5 = fn4();
+			fn5();//1
+			fn5();//2
+			fn5();//3
+			
+			
+			//迭代器  操作函数传进来的参数
+			function fn6(){
+				var i = 0;
+				var arg = arguments;
+				return function(){
+					console.log(arg[i++]);
+				}
+			}
+			
+			var next = fn6(1,2,3,4,5,6,7,8);
+			next();
+			next();
+			next();
+			next();
+			next();
+			next();
+			next();
+			
+			
+			//所有的li
+			var liArr = document.querySelectorAll('li');
+			/*
+			for (var i = 0; i < liArr.length; i++) {
+				
+				liArr[i].onclick = function(){
+					this.innerHTML = i + "";
+				}
+			}*/
+			//第一种解决方案
+			/*
+			for (var i = 0; i < liArr.length; i++) {
+				//自定义index属性和i的值一样
+				liArr[i].index = i;
+				liArr[i].onclick = function(){
+					this.innerHTML = this.index + "";
+				}
+			}*/
+			
+			for(var i = 0; i < liArr.length;i++){
+				/*
+				liArr[i].onclick = (function(x){
+					 x = i;// 0 1 2 3 4
+					return function(){
+						liArr[x].innerHTML = x + "";
+					}
+				})(i);*/
+				
+				//只有调用click函数才会在产生闭包
+				function click(i){
+					//闭的是局部变量   参数 i
+					return function(){
+						liArr[i].innerHTML = i + "";
+					}
+				}
+				liArr[i].onclick = click(i);//循环调用了5次，产生了5个闭包
+				//每个闭包里的局部变量就是参数i，每个闭包中的i的值分别为0 1 2 3 4
+			}
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

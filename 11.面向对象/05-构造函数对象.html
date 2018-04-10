@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//函数也是对象
+			function show(){
+				
+			}
+			console.log(typeof show);//function
+			console.log(show instanceof Object);//true
+			
+			//构造函数也是对象
+			function Person(){
+				
+			}
+			console.log(Person instanceof Object);//true
+			
+			
+			//既然构造函数是对象，他是不是也有__proto__?
+			//既然构造函数是对象，构造函数是有谁创建的？
+			
+			console.log(Person.__proto__);//__proto__ 
+			//原型是一个函数
+			console.log(Person.__proto__.__proto__);
+			
+			//访问Person构造器（对象）的构造器
+			console.log(Person.__proto__.constructor);
+			//function Function() { [native code] }  内置Function构造器(构造函数)
+			//Array Object....
+			
+			
+			//声明一个函数/创建一个函数   快捷方式
+			function fn(x,y){
+				return x + y;
+			}
+			//快捷方式
+			var obj={
+				a:10
+			}
+			//本质还是调用了new Object()
+			obj = new Object();
+			//所有的对象都是由构造器去创建的
+			//函数也是对象，所以函数对象也是由构造器创建
+			
+			//函数创建的本质是new Function()创建的
+			fn = new Function('x','y',"return x + y");
+			
+			console.log(fn(1,2));
+			
+			console.log(Function.prototype);
+			console.log(Function.__proto__);
+			
+			//Function这个对象是由自己创建
+			console.log(Function.__proto__.constructor);
+			//function Function() { [native code] }
+		</script>
+		
+		
+		
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script>
+			
+			//这个对象的构造器是Object（内置构造器，Array，Math，Number）
+			//这个对象本质是由new Object()创建的
+			var obj = {
+				a:10,
+				show:function(){
+					console.log('........');
+				}
+			}
+			//访问这个对象的原型对象
+			console.log(obj.__proto__);
+			//null就是所有原型链的顶点（终点）
+			console.log(obj.__proto__.__proto__);
+			
+			//给Object的原型添加了一个属性  
+			Object.prototype.c = 11;
+			
+			
+			//自定义构造器
+			function Person(){
+				
+			}
+			
+			console.log(Person.prototype);
+			
+			console.log(Person.prototype.__proto__);
+			console.log(Person.prototype.__proto__.__proto__);
+			
+			var person = new Person();
+			//所有的对象都有了c这个属性
+			console.log(person.c);
+		</script>
+		
+	</body>
+</html>

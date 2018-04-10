@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div class="box" mysttr = "somedata" id="box1">
+			<span>我是span</span>
+			<div>我是div</div>
+		</div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<input type="checkbox" name="fav"/>男
+		<input type="checkbox" name="fav"/>女
+		<input type="checkbox" name="fav"/>都行
+		<input type="checkbox" name="fav"/>都不行
+
+		<script>
+			//相对BOM来说DOM的使用更加频繁，也更加重要
+			
+			//DOM(文档对象模型) Document Object Model
+			//DOM是W3C定义的关于html访问的标准
+			
+			//html DOM的操作主要是获取、修改、添加、删除html元素
+			
+			//DOM 的节点分类
+			/* 1.整个文档是一个文档节点
+			 * 2.每个html元素是元素节点
+			 * 3.html元素内的文本时文本节点
+			 * 4.html元素的属性是属性节点
+			 * 5.注释是注释节点
+			 */
+			
+			//1.通过标签名获取元素
+			var aDiv = document.getElementsByTagName("div");
+			//类数组对象
+			console.log(aDiv);
+			
+			//2.通过class来获取元素   在IE8以下无法使用
+			var aDiv2 = document.getElementsByClassName("box");
+			console.log(aDiv2);
+			
+			//3.通过name来获取元素
+			var aName = document.getElementsByName("fav");
+			console.log(aName);
+			
+			//4.通过id来获取元素
+//			var aId = docume.getElementById("id");
+
+			//5.设置官方定义的属性节点的属性值
+			aName[0].type = "button";
+			aName[0].value = "点我";
+			aDiv[0].style.width = "200px";
+			//有-连接符的属性需要去掉-，然后第二个单词首字母大写
+			aDiv[0].style.backgroundColor = "#fff";
+			
+			//有的时候，点击某个标签，需要拿到某个数据，而这个数据是从网络获取的
+			//并且这个数据并不展示出来，这个时候这个数据就可以存在自定的属性上
+			//6.获取自定义属性
+			var div = document.getElementById('box1');
+			var sttr = div.getAttribute("mysttr");
+			console.log(sttr);
+			
+			//设置自定义属性 setAttribute 两个参数 第一个是属性名 第二个是属性值
+			document.getElementById('box1').setAttribute('mysttr','newdata');
+			console.log(div.getAttribute("mysttr"));
+			
+			//删除自定义属性
+			div.removeAttribute('mysttr');
+			console.log(div.getAttribute("mysttr"));
+			
+			//7.获取文本节点  innerHTML  outerHTML innerText
+			//开始标签到结束到结束标签之间的内容
+			console.log(div.innerHTML);
+			console.log("----------------------");
+			//innerHTML的内容加上开始标签和结束标签
+			console.log(div.outerHTML);
+			console.log("----------------------");
+			//innerHTML中的文本
+			console.log(div.innerText);
+			
+			//往元素中添加标签  动态添加html
+			div.innerHTML = "<div>123<p>ssss</p></div>";
+			
+			
+			
+		</script>
+		
+		
+		
+	</body>
+</html>

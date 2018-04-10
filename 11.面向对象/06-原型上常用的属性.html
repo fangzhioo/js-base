@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//自定义Person构造函数
+			function Person(name,age){
+				this.name = name,
+				this.age = age
+			}
+			//查看原型
+			console.log(Person.prototype);
+			//查看原型所指的构造函数
+			console.log(Person.prototype.constructor);
+			
+			var xiaoming = new Person("小明",'22');
+			//对象的原型
+			console.log(xiaoming.__proto__);
+			
+			//给Person的原型上添加一个属性sex
+			Person.prototype.sex = "男";
+			
+			//判断某个对象是否存在这个属性
+			console.log(xiaoming.hasOwnProperty("name"));//true
+			//hasOwnProperty 只找本身具有的属性，不查找原型链上存在的属性
+			console.log(xiaoming.hasOwnProperty('sex'));//false
+			console.log(xiaoming.sex);//男
+			
+			
+			//对象也是一种数据结构，也用来存储数据（属性的集合--键值对的集合）
+			//和数组一样都是数据结构，只不过存储数据的形式不同
+			
+			//遍历对象
+			for (var atr in xiaoming) {
+				//atr 是对象的属性名
+				console.log(atr);
+				
+				//只去获取对象本身具有的属性，忽略原型上的属性
+				if(xiaoming.hasOwnProperty(atr)){
+					//xiaoming[atr] 获取每个属性值
+					console.log(xiaoming[atr]);
+				}
+				
+				//console.log(xiaoming.atr);//undefined
+				//对象的属性名都是字符串
+			}
+			
+			//getPrototypeOf 获取某个对象的原型
+			console.log(Object.getPrototypeOf(xiaoming));
+			//__proto__不建议直接使用（隐藏属性）
+			
+			//isPrototypeOf 判断一个对象是否是另一个对象的原型
+			console.log(Person.prototype.isPrototypeOf(xiaoming));//true
+			
+			
+			console.log(xiaoming.toString());//[object Object]
+			
+			//往对象上添加方法，通常我们会把它添加到原型上
+			Person.prototype.toString = function(){//重新改造了toString的实现
+				console.log(this.name + this.age + this.sex);
+			}
+			
+			var xiaohong = new Person('小红','22');
+			//往对象上添加属性，尽量不要使用往原型上添加
+			xiaohong.sex = "女";
+			xiaohong.toString();
+			
+			//Math.random()
+			//除了给对象添加方法，还可以给构造器添加方法，这种方法我们称之为静态方法(类方法)
+			//静态方法不需要我们创建对象，直接使用构造器去调用
+			//什么时候添加静态方法：这个功能不需要特指某个对象才能调用
+			Person.logMes = function(){
+				console.log("这是Person对象");
+			}
+			
+			
+		</script>
+		
+	</body>
+</html>

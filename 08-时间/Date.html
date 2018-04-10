@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//获取当前时间
+			var d = Date("2016-10-10");//传参是无效的
+			console.log(d);
+			//Thu Dec 08 2016 10:51:41 GMT+0800 (中国标准时间)
+			
+			//构造函数  当前时间
+			var d2 = new Date();
+			console.log(d2);
+			
+			//1970  之后多少秒，参数是秒
+			d2 = new Date(3600*10);
+			//hu Jan 01 1970 09:00:00 GMT+0800 (中国标准时间)
+			console.log(d2);
+			
+			
+			//6 22 ,2016 12:00:00 时间字符串  
+			//把字符串转成时间
+			d2 = new Date("6 22 ,2016 12:00:00");
+			//Wed Jun 22 2016 12:00:00 GMT+0800 (中国标准时间)
+			console.log(d2);
+			
+			d2 = new Date('2016-08-08');
+			console.log(d2);
+			
+			d2 = new Date('2016/08/08');
+			console.log(d2);
+			
+			d2 = new Date(2016,12,8,12,0,0);//年月 日 时 分 秒
+			//Thu May 05 2016 12:00:00 GMT+0800 (中国标准时间)
+			console.log(d2);
+			//getFullYear  年
+			console.log(d2.getFullYear());//四位数字的年份
+			//getMonth 月
+			console.log(d2.getMonth());//某个月份（0 - 11） 12月份是0
+			//getDate 日期
+			console.log(d2.getDate());//返回一个月中的某一天
+			//getDay 天
+			console.log(d2.getDay());//返回一周中的某一天（0 - 6） 周日是0
+			//时 分 秒
+			console.log(d2.getHours());// 0 - 23
+			console.log(d2.getMinutes());// 0 - 59
+			console.log(d2.getSeconds());// 0 59
+			console.log(d2.getMilliseconds());//毫秒 0 -- 999
+			console.log(d2.getTime())//毫秒 从1970 1 1 到现在的毫秒数
+			
+			//get的方法 对应着set方法 设置相应的时间
+			d2.setDate(2);
+			d2.setMonth(-3);//负数 是倒过来的月份
+			console.log(d2.getMonth());
+			 
+			var d3 = new Date(2016,6,22,15,55,30);
+			//直接用时间运算差值得到毫秒数
+			console.log(d3 - d2);//-6206670000 毫秒数
+			
+			Date.parse("2016-10-24");
+			//1970 1 1  到这个时间的毫秒数
+			//1477267200000
+			console.log(Date.parse("2016-10-24"));
+			
+		</script>
+		
+		
+	</body>
+</html>

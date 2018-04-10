@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<input type="text" id="pt"/>
+		<span id="sp"></span>
+		
+		<script>
+			
+			var oInput = document.getElementById('pt');
+			var sp = document.getElementById('sp');
+			
+			//按下键盘
+			document.onkeydown = function(e){
+				console.log('按下键盘');
+				//keyCode 每个键盘按钮的标识
+				sp.innerHTML = e.keyCode;	
+			}
+			
+			//抬起键盘
+			document.onkeyup = function(){
+				console.log("抬起键盘");
+			}
+			
+			//按下字符键盘
+			document.onkeypress = function(){
+				console.log("press");
+			}
+
+		</script>
+		
+		<div id="div" style="width: 100px;height:100px;
+			background-color: red;position: absolute;left:0;top:0">
+			
+		</div>
+		
+		<script>
+			
+			var div = document.getElementById('div');
+			
+			document.onkeydown = function(e){
+				
+				if(e.keyCode == 37){
+					//左
+					div.style.left = div.offsetLeft - 10 + "px";
+				}else if(e.keyCode == 39){
+					//右
+					div.style.left = div.offsetLeft + 10 + "px";
+				}else if(e.keyCode == 38){
+					//上
+					div.style.top = div.offsetTop - 10 + "px";
+				}else if(e.keyCode == 40){
+					//下
+					div.style.top = div.offsetTop + 10 + "px";
+				}
+				
+			}
+			
+		</script>
+	</body>
+</html>

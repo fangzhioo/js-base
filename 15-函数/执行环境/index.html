@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//全局作用域
+			var value = 8;
+			console.log(window.value);
+			function func () {
+				//局部作用域
+				var value3 = 10;
+				function func2 () {
+					//局部作用域
+					var value4 = 11;
+				}
+				console.log("调用了func()函数");
+			}
+			
+			window.func();
+			
+		</script>
+		<script type="text/javascript">
+			//全局
+			var value2 = 9;
+			
+		</script>
+	</body>
+</html>

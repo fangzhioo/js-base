@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script>
+			
+			var reg = /f..lish/;//.匹配任意字符
+			var str = "faalish";
+			console.log(reg.test(str));//true
+			
+			reg = /f.*lish/;//*匹配0个一个或多个
+			str = "fooooooooolish";
+			console.log(reg.test(str));//true
+			
+			reg = /f[a-zA-Z]*lish/;//[]范围 a-zA-Z
+			console.log(reg.test(str));//true
+			
+			reg = /f[^0-9]*lish/;//^非
+			console.log(reg.test(str));
+			
+			reg = /[a-z][A-Z]+/;//+表示一次或多次
+			str = "fOOLISH";
+			console.log(reg.test(str));
+			
+			reg = /f\w*lish/;//\w任意字母
+			str = "fooAAAAAAlish";
+			console.log(reg.test(str));//true
+			
+			reg = /\D{2}h/;//\D任意非数字  {}次数/倍数  
+			//贪婪模式  尽可能多的去匹配
+			str = "foolish";
+			console.log(reg.test(str));
+			
+			reg = /foolish\d*/;//\d任意数字
+			str = "foolish93333";
+			console.log(reg.test(str));//true
+			
+			
+			reg = /^foolish$/;//^从头开始  $从结尾开始  禁止贪婪模式
+			str = "foolishssss";
+			console.log(reg.test(str));
+			
+			
+			reg = /foo\slish/;//\s匹配空格
+			str = "foo lish";
+			console.log(reg.test(str));//true
+			
+			
+			reg = /bad|good|fool/;// | 或
+			str = "bad";
+			console.log(reg.test(str));
+			
+			reg = /习近平|毛主席|FUNCK/gi;
+			str = "习近平是个伟大的领导"
+			console.log(str.replace(reg,"***"))
+			
+			reg = /(foolish){4,8}/;//()分组匹配  {4,8}4到8次
+			str = "foolishfoolishfoolishfoolish";
+			console.log(reg.test(str));//true
+			
+			reg = /8(.*)8/;//匹配8 -- 8之间任意多字符
+			str = "8foolish8";
+			console.log(reg.test(str));
+			//以英文字母开头  以四位数字结尾的字符串
+			reg = /^[a-zA-Z]+\s[0-9]{4}$/;
+			str = "tom 2016";
+			console.log(reg.test(str));//true
+			
+			
+			reg = /\./;//特殊字符转义，使用\
+			str = ".com";
+			console.log(reg.test(str));
+			
+			reg = /^\d[a-z]{3}$/m;//m匹配换行/多行匹配
+			str = "1aaa\n2bbb\n3ccc"
+			console.log(reg.test(str));//true
+			
+			//检查邮政编码
+			reg = /[0-9]{6}/;
+			str = "100000";
+			console.log(reg.test(str));
+			
+			//检查文件压缩包   检查图片   检查网站
+			reg = /[\w]+\.zip|rar|gz/;
+			str = "123.zip";
+			console.log(reg.test(str));
+			
+			//删除多余的空格
+			reg = /\s/g;
+			str = "a b c";
+			console.log(str.replace(reg,""));
+			
+			//删除行首的空格/强制首
+			reg = /^\s+/;
+			str = "      abc";
+			console.log(reg.test(str),str.replace(reg,""));
+			reg = /\s+$/;//强制尾
+		
+			
+			
+		</script>
+		
+	</body>
+</html>

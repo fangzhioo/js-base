@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script>
+			
+			//ES5是没有块级作用域的，{}就是块级作用域，只有全局作用域和函数作用域
+			//ES6引入了块级作用域的概念
+			
+			var i = 10;
+			if(i> 1){
+				var y = 20;
+			}
+			console.log(y);//20
+			
+			for (var i = 0; i < 4; i++) {
+				
+			}
+			console.log(i);//4
+			//和上面的for循环是一样的
+			var i;
+			for (i=0; i < 4; i++) {
+				
+			}
+			
+			//作用域相当于地盘的概念
+			var a = 10,
+				b = 20;
+			function fn(){
+				var a = 100,
+					c = 200;
+				function fn2(x){
+					var a = 1000,
+					 	d = 2000;
+					console.log(c);//相对于fn2作用域来说，c就是自由变量
+				}
+				fn2(1);
+				fn2(2);
+			}
+			fn();
+			
+			//自由变量
+			var x = 10;//这个x就是自由变量
+			function fn4(){
+				var b = 20;
+				console.log(b + x);
+			}
+			fn4();
+			//在fn4里使用了变量x，却没有在fn4作用域中声明，对于fn4作用域来说，x就是自由变量
+			
+			
+			var x = 10;
+			function fn5(){
+				console.log(x);
+			}
+			
+			function show(f5){
+				var x = 20;
+				
+				f5();//10  -- 不是20
+			}
+			show(fn5);
+			//变量的查找 ---- 作用域的查找  ----- 跨作用域查找 --- 跨 ----- window全局作用域
+			//这个过程就是作用域链
+		</script>
+		
+		
+		
+		
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			
+			//自调用函数：函数创建时候就调用
+			
+			function fn1(a,b){
+				//在任何地方，任何文件都能使用fn1，
+				//假如在别的文件、别的地方也定了fn1，会覆盖原来的这个函数
+				console.log('fn1');
+			}
+			//创建和调用是分开的
+			fn1(1,2);
+			
+			//自调用函数
+			(
+				function(){
+					console.log(arguments.callee);
+				}
+			)();
+			
+			//带参数的自调用函数
+			var fn = (function(a,b){
+				console.log(a+b);
+			})(1,2);
+			
+			//自调用函数的好处：为了减少全局变量的污染
+			
+			console.log(fn);//即使有变量接受也拿不到自调用的函数
+			
+			
+			//重写函数自身
+			function fn4(){
+				console.log('第一次的功能');
+				fn4 = function(){
+					consolep.log('重写后的功能');
+					fn4 = function(){
+						console.log('再次重写后的功能')
+					}
+				}
+			}
+			//调用同一个方法 ，每次调用实现功能不同
+			//第一次调用
+			fn4();
+			//第二次调用
+			fn4();
+			//第三次调用
+			fn4();
+			
+			
+//			var f2 = (function f1(){	
+//				console.log(222);
+//				f1 = function(){
+//					console.log(111);
+//				}
+//				return f1;
+//			})();
+////			var f3 = f2();
+//			f2();
+//
+////			}
+////			ss();
+//var a = var b = 10;
+		</script>
+		
+		
+	</body>
+</html>

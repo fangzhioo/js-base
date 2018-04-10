@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1></h1>
+		<script type="text/javascript">
+			
+			
+			//创建文本节点
+			var textnode=document.createTextNode('hello world');
+			
+			//将文本节点添加到h1节点中
+			document.querySelector('h1').appendChild(textnode);
+			
+			//打印h1子节点
+			var nodes=document.querySelector('h1').childNodes;
+			console.log(nodes);
+			
+		</script>
+	</body>
+</html>

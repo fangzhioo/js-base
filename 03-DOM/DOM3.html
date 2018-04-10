@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--引入外部js文件-->
+		<script src="base.js"></script>
+		<style>
+			#box2{
+				width: 200px;
+				height: 200px;
+				background-color: blue;
+			}
+			#title{
+				/*position: relative;*/
+			}
+			#box3{
+				position: relative;
+			}
+			#box1{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box1"></div>
+		<div id="box2"></div>
+		
+		<div id="box3">
+			<h1 id="title">
+				<p id="p">测试offsetParent属性</p>
+			</h1>
+		</div>
+		
+		<script>
+			//css脚本化  给元素设置/获取css样式，通过js的方式
+			//设置样式
+			$('box1').style.width = "100px";
+			$('box1').style.height = "100px";
+			$('box1').style.backgroundColor = "#ff0000";
+			//获取样式
+			console.log($('box1').style.width);//100px带单位的
+			
+			//修改样式
+			$('box2').style.width = "500px";//style.属性   设置的样式会在行间
+			//而style.属性  获取的是行间的样式
+			//内部样式和外部样式不能通过style.属性 的形式获取
+			//console.log($('box2').style.height);//获取不到
+			
+			// IE有效 currentStyle 获取内部或外部的样式
+			//console.log($('box2').currentStyle['height']);
+			
+			//非IE  getComputedStyle 获取内部或外部的样式
+			//window调用     第一个参数想要获取的DOM  第二个参数是null没有实质的意义
+			console.log(window.getComputedStyle($('box2'),null)['height']);
+			
+			//currentStyle  getComputedStyle都是只读属性
+			
+			
+			//offsetParent 这是DOM的属性，返回值是一个对象
+			
+			//主要是获取某个元素的定位父级（在包含层次中靠的最近的定位元素）
+			//第一种情况：这个容器元素没有css定位，则offsetParent属性的返回值为根元素（html元素或者body元素）
+			//第二种情况：这个元素的父级元素有css定位，则返回这个父级元素
+			//第三种情况：父级元素没有定位，但是父级的上层有定位，则返回离这个元素层级最近的定位元素
+			
+			console.log($('p').offsetParent);
+			//相对offsetParent的偏移量
+			//offsetLeft  --- 偏移量left的值
+			//offsetTop ---  偏移量top的值
+			//offsetWidth   -----  节点的width的值
+			//offsetHeight  ---- 节点height的值
+			
+			//在做一些DOM运动的时候     可以使用定时器  ，让他一直移动 ，每次移动多少距离
+			//速度
+			var speed = 5;
+			var timer = setInterval(function(){
+				//设置left的值   
+				$('box1').style.left = $('box1').offsetLeft + speed + "px";
+				//0  5  10  
+				
+				
+				//碰到右侧
+				if($('box1').offsetLeft >= $w() - $('box1').offsetWidth){
+					speed = -5
+				}
+				
+				//碰到左侧
+				if($('box1').offsetLeft <= 0){
+					speed = 5;
+				}
+				
+			},10)
+			
+		</script>
+		
+		
+	</body>
+</html>

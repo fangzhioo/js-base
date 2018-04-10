@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">			
+			//定义一个函数
+			//闭包例子
+			function func1(){
+				var value =99;
+				//匿名函数 -->闭包函数
+				return function (num){
+					console.log(num+value);
+				};	
+			}
+			//func2 --> 闭包函数
+			var func2=func1();
+			//全局作用域中 ，使用value
+			func2(1);
+			//在全局作用域之前提前销毁闭包函数对应空间
+			func2 = null;
+			//****
+			
+			//////////////////////////////////////////
+			//闭包引发的this问题
+			var name ='window';
+			var obj={
+				name:'obj',
+				printName:function(){
+					console.log(this.name);//输出obj,this指向obj对象
+					var that=this;
+					//函数属性中的闭包函数
+					(function () {
+						console.log(that.name);	//匿名函数this指向不明确，就指向window		
+					})();
+				}
+			}
+			obj.printName();//输出window
+			
+			
+		</script>
+	</body>
+</html>

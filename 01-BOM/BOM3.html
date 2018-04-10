@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>关于我们</title>
+		<style>
+			body{
+				background: yellow;
+				height: 2000px;
+			}
+			#goTop{
+				width: 150px;
+				height: 150px;
+				background: #123456;
+				position: fixed;
+				right: 0;
+				bottom: 0;
+				color: #fff;
+				border-radius: 75px;
+				line-height: 150px;
+				text-align: center;
+			}
+			#box{
+				width: 300px;
+				height: 300px;
+				background: #FF0000;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<button onclick = "click1()">返回上一页</button>
+		<button onclick = "click2()">回到首页</button>
+		<button onclick = "click3()">前进下一页</button>
+		
+		<div id="goTop">回到顶端</div>
+		
+		<div id="box"></div>
+		
+		<button onclick="clearTimer()">拆除炸弹</button>
+		
+		<script>
+			function click2(){
+				window.location.href = "BOM1.html";
+			}
+			
+			//事件和方法的区别：  
+			//方法：点击某个按钮（元素）调用，由我们控制在什么时候调用对的
+			//事件：只要满足特定条件机会触发，不一一定由我们控制
+			//但是最终都是在调用函数
+			
+			
+			//常用事件onscroll滚动事件
+			//当窗口发生滚动触发该事件，获取滚动条滚动了多少
+			
+			window.onload = function(){
+				
+				var oDiv = document.getElementById('goTop');
+				
+				oDiv.onclick = function(){
+					//滚动到顶部
+					
+					document.body.scrollTop = 0;
+					document.documentElement.scrollTop = 0;
+//					document.body.scrollTop || document.documentElement.scrollTop = 0;
+					//通常我们两个方法都回去写，主要是为了兼容
+					//页面是否具有DTD,是否指定了DOCTYPE
+					//指定了DOCTYPE，document.body.scrollTop有效
+					//没有指定了DOCTYPE，document.documentElement.scrollTop有效
+				}
+			}
+			//body  指的是body标签    documentElement指的是根标签（html标签）
+			//拿到浏览器的可视区域大小
+			
+			//复用代码（重用），易于维护
+			function setCenter(){
+				var width = document.documentElement.clientWidth || document.body.clientWidth;
+				var height = document.documentElement.clientHeight || document.body.clientHeight;
+				console.log(width,height);
+				var box = document.getElementById("box");
+				box.style.left = (width - 300)/2 + 'px';
+				box.style.top = (height - 300)/2 + 100 + 'px';
+			}
+			
+			window.onload = function(){
+				setCenter();
+			}
+			
+			//此处省略一万行代码
+			
+			
+			//onresize  当浏览器窗口大小发生改变的时候就会发该事件
+			window.onresize = function(){
+				setCenter();
+			}
+			
+			//onscroll 当滚动的时候触发
+			window.onscroll = function(){
+				console.log("滚.....");
+			}
+			
+			
+			//定时器   1、连续定时器  2、 延时定时器
+			//可以使用定时器去做动画效果
+			//事件单位是毫秒
+			//每隔一段时间就会调用fun方法
+			var timer1 = setInterval(fun,5000);
+			function fun(){
+				console.log('爆炸爆炸');
+			}
+			
+			
+			//延时固定时间调用方法
+			var timer2 = setTimeout(function(){
+				console.log("要爆炸了");
+			},3000);
+			
+			
+			function clearTimer(){
+				//停掉/清除定时器
+				clearInterval(timer1);
+				clearTimeout(timer2);
+				console.log("炸弹已拆除");
+			}
+		</script>
+	</body>
+</html>

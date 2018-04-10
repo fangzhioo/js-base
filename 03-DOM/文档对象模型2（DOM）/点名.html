@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				height: 600px;
+				width: 600px;
+				margin: 50px auto;
+				border: double 8px green;
+				border-radius: 300px;
+				cursor: pointer;
+			}
+			p{
+				font-size: 500px;
+				text-align: center;
+				line-height: 580px;
+				color: red;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		
+		<div>
+			<p>6</p>
+		</div>
+		<script type="text/javascript">
+			
+			//定时器
+			var timer= setInterval(function(){
+				console.log(1);	
+			},1000);
+			//0秒之后停止timer
+			setTimeout(function(){
+				clearInterval(timer);
+			},10000);
+		
+			
+			
+		//设计一个函数，返回一个1-40之间
+		function returnNum(){
+			return Math.ceil(Math.random()*40);
+		}
+		
+		//对div添加点击事件
+		var div =document.querySelector('div');
+		var isRunning=false;//是否运行
+		var clickTimer;//定时器
+		div.onclick=function(){
+			if (isRunning){
+				//运行中	停止定时器
+				clearInterval(clickTimer) ;
+				isRunning=false;
+			}else{
+				//停止中
+				clickTimer=setInterval(function(){
+					//定时器执行一次，p重新设置一个数字
+					document.querySelector('p').innerText=returnNum();
+					
+				},10)
+				isRunning=true;
+				
+			}
+			
+		}
+		div.ondblclick=function(){
+			if (isRunning){
+				//运行中	停止定时器
+				clearInterval(clickTimer) ;
+				isRunning=false;
+				document.querySelector('p').innerText=40;
+			}else{
+				//停止中
+				clickTimer=setInterval(function(){
+					//定时器执行一次，p重新设置一个数字
+					document.querySelector('p').innerText=returnNum();
+					
+				},10)
+				isRunning=true;
+				
+			}
+			
+		}
+			
+		</script>
+		
+	</body>
+</html>

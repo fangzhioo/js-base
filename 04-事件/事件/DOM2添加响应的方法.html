@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.thediv{
+				width: 200px;
+				height: 200px;
+				background: red;
+			}
+			.thisdiv{
+				width: 100px;
+				height: 100px;
+				background: green;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="thediv">
+			<div class="thisdiv"></div>
+		</div>
+		<a href="http://www.baidu.com">百度</a>
+		<script type="text/javascript">
+			//定义响应函数
+			//e 事件对象
+			function callback(e){
+				alert('xxxx');
+				console.log(e);
+			}
+			//addEventListener()
+			document.querySelector('.thediv').addEventListener('click',callback,false);
+			///removeEventListener()
+//			document.querySelector('.thediv').removeEventListener('click',callback,false)
+			document.querySelector('.thisdiv').addEventListener('click',function(){
+				alert('this----里面');
+			},false);
+			
+			//IE
+			//attachEvent()     IE9以下。。 添加
+			//detachEvent()		移除
+			
+			//对a标签添加单击属性，阻止其默认行为
+			document.querySelector('a').onclick=function(e){
+				e.preventDefault();
+			}
+			
+			
+		</script>
+	</body>
+</html>

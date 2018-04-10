@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			//1、indexOf()/lastIndexOf()
+			var str = 'hello world hello world hello world';
+			//从前到后检索子串，返回子串开始位置的索引，无此子串返回-1
+			var postion = str.indexOf('hello');
+			console.log(postion);
+			//从后到前检索子串，返回子串开始位置的索引，无此子串返回-1
+			var postion2 = str.lastIndexOf('hello');
+			console.log(postion2);
+			//如果传入第二个参数（正整数），第二个参数为开始查找的位置，查找方向不变
+			var postion3 = str.indexOf('hello', 35);
+			console.log(postion3);
+			
+			//2、toUpperCase()/toLowerCase()
+			var str2 = 'hello WORLD';
+			//原串中所有字母变成大写，新串返回
+			var str3 = str2.toUpperCase();
+			console.log(str2);
+			console.log(str3);
+			//原串中所有字母变成小写，新串返回
+			var str4 = str2.toLowerCase();
+			console.log(str4);
+			
+			//3、concat()
+			var str5 = 'hello';
+			var str6 = ' world';
+			//拼接字符串，和 + 一致 
+			var str7 = str5.concat(str6);
+			console.log(str7 + '-----' + str5);
+			
+			//4、localeCompare()
+			var str8 = 'A';
+			var str9 = 'a';
+			//0123456789aAbB.....zZ  小 -1；等 0；大 1；
+			console.log(str8.localeCompare(str9));
+			
+			//5、slice()/substring()/substr()
+			var str10 = 'abcdefg';
+			//正数时  参数1 起始位置	  参数2 结束位置后一位
+			console.log(str10.slice(3, 5));
+			//正数时  参数1 起始位置	  参数2 结束位置后一位
+			console.log(str10.substring(3, 5));
+			//正数时  参数1 起始位置	  参数2 返回新串的长度
+			console.log(str10.substr(3, 2));
+			console.log(str10);
+			//负数时  参数1 加长度（转正）参数2 加长度（转正）
+			console.log(str10.slice(-2, -1));
+			//负数时  参数1 置0			参数2 置0
+			console.log(str10.substring(-1, -5));
+			//负数时  参数1 加长度	    参数2 置0
+			console.log(str10.substr(-3, -4));
+			
+			//课堂练习：设计一个函数，输入字符串，输入字母，返回此字母在字符串中出现次数。
+			//方式一：charAt()
+			function calCount (str, c) {
+				//定义一个计数器
+				var count = 0;
+				//遍历字符串的每一个字母
+				for (var i = 0; i < str.length; i ++) {
+					//条件成立，与c相同，计数器+1
+					if (c == str.charAt(i)) {
+						count ++;
+					}
+				}
+				//将次数返回
+				return count;
+			}
+			console.log(calCount('abcadeafad', 'a'));
+			//方式二：indexOf()
+			function calCount1 (str, c) {
+				//定义计数器
+				var count = 0;
+				//定义一个变量，使用传入的字符串赋值
+				var inStr = str;
+				while (inStr.indexOf(c) != -1){
+					inStr = inStr.slice(inStr.indexOf(c) + 1);
+					count ++;
+				}
+				return count;
+			}
+			console.log(calCount1('abcadeafad', 'a'));
+			
+		</script>
+	</body>
+</html>

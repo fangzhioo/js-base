@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="base.js"></script>
+		<script src="move.js"></script>
+		<style>
+			#div1{
+				width: 150px;
+				height: 150px;
+				background-color: #0000FF;
+				position: absolute;
+				right: 0;
+				top: 0;
+				line-height: 150px;
+				text-align: center;
+			}
+			body{
+				height: 2000px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="div1">这是一个广告</div>
+		
+		<script>
+			
+			//滚动事件   a = b = 1
+			window.onresize = window.onload = window.onscroll = function(){
+				//浏览器可视区域的高
+//				var height = $h();
+				var over = ($h() - $('div1').offsetHeight)/2;
+				//onload的时候srolltop是0
+				//最终位置就是所在位置+滚动的距离srolltop
+				over = over + $top();
+				//调用封装的方法
+				startMove($('div1'),'top',parseInt(over));
+				
+			}
+			
+		</script>
+	</body>
+</html>

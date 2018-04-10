@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box"></div>
+		
+		<script>
+			//事件流  ---- 事件冒泡
+			//事件流就像管道一样，从里到外逐个触发
+			var div = document.getElementById('box');
+			
+			div.onclick = function(e){
+				console.log('点击了div');
+				//非IE  阻止冒泡行为
+				if(e.stopPropagation){
+					e.stopPropagation();
+				}else{
+					//IE 阻止冒泡行为
+					e.cancelBubble = true;
+				}
+			}
+			
+			document.body.onclick = function(){
+				console.log('点击了body');
+			}
+			
+			document.onclick = function(){
+				console.log('你点了document');
+			}
+			
+		</script>
+		
+		
+	</body>
+</html>

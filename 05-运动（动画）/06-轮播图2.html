@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			a{
+				text-decoration: none;
+			}
+			#box{
+				margin: 0 auto;
+				margin-top: 50px;
+				width: 500px;
+				height: 200px;
+				overflow: hidden;
+				position: relative;
+			}
+			#slideBox{
+				height: 200px;
+				width: 10000px;
+			}
+			#slideBox .slide,
+			#slideBox .slide a.pc,
+			#slideBox .slide a.pc img{
+				width: 500px;
+				height: 200px;
+			}
+			
+			#slideBox .slide{
+				position: relative;
+				float: left;
+			}
+			
+			#slideBox .slide a.pc,
+			#slideBox .slide span.txt{
+				display: block;
+			}
+			
+			#slideBox .slide span.txt{
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				height: 40px;
+				background-color: #000000;
+				background-color: rgba(0,0,0,0.6);
+				line-height: 40px;
+				text-indent: 20px;
+				width: 500px;
+			}
+			
+			#slideBox .slide span.txt a{
+				color: #FFFFFF;
+				font-size: 16px;
+			}
+			
+			#box .btns{
+				position: absolute;
+				list-style: none;
+				bottom: 10px;
+				right: 5px;
+			}
+			
+			#box .btns li{
+				float: left;
+				margin-right: 5px;
+				width: 18px;
+				height: 18px;
+				border: 1px solid #ccc;
+				background-color: #666;
+				font-size: 16px;
+				text-align: center;
+			}
+			
+			#box .btns li.current{
+				background-color: #FF9900;
+			}
+			
+			#box .btns li a{
+				display: block;
+				color: #FFFFFF;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">	
+			<div id="slideBox">
+				<!--内容和图片-->
+				<div class="slide slide0">
+					<a href="#" class="pc"><img src="img/01.jpg"/></a>
+					<span class="txt"><a href="#">跑车111111111</a></span>
+				</div>
+				<div class="slide slide1">
+					<a href="#" class="pc"><img src="img/02.jpg"/></a>
+					<span class="txt"><a href="#">跑车22222222</a></span>
+				</div>
+				<div class="slide slide2">
+					<a href="#" class="pc"><img src="img/03.jpg"/></a>
+					<span class="txt"><a href="#">跑车33333333</a></span>
+				</div>
+				<div class="slide slide3">
+					<a href="#" class="pc"><img src="img/04.jpg"/></a>
+					<span class="txt"><a href="#">跑车44444444</a></span>
+				</div>
+				<div class="slide slide4">
+					<a href="#" class="pc"><img src="img/05.jpg"/></a>
+					<span class="txt"><a href="#">跑车55555555</a></span>
+				</div>
+				
+			</div>
+			
+			<!--数字按钮-->
+			<ul class="btns">
+				<li class="current"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+			</ul>
+		</div>
+		<script src="base.js"></script>
+		<script src="move.js"></script>
+		<script type="text/javascript">
+			//拿到每个数字按钮
+			var aArr = document.querySelectorAll('.btns>li>a');
+			var aLi  = document.querySelectorAll('.btns>li');
+			console.log(aArr);
+			//要移动的大盒子
+			var slideBox = $('slideBox');
+			
+			for(var i = 0; i < aArr.length; i++){
+				
+				console.log(getStyle(slideBox,'marginLeft'));
+				aArr[i].index = i;
+				
+				aArr[i].onmouseover = function(){
+					//暂停定时器
+					clearInterval(timer);
+					//图片移动
+					move(this.index);
+					//记录当前鼠标停留在那个数字上，下次自动播放从这个数字开始
+					j = this.index;
+					
+				}
+				//鼠标离开数字的时候，重启定时器，自动轮播
+				aArr[i].onmouseout = function(){
+					//重启定时器
+					timer = setInterval(function(){
+						j++;
+						move(j%5);// 1 2 3 4 5 ---  1 2 3 4 0
+					},3000);
+				}
+			}
+			function move(index){//elem = this 
+
+				//鼠标移动到那个数字上，显示相应的大图
+				startMove(slideBox,'marginLeft',-500*index);
+				
+				for(var i = 0; i < aLi.length; i++){//0 -- 4
+					//className（class） 和 id都是DOM元素的属性 和style一样
+					//把所有的li标签的class质空
+					aLi[i].className = "";
+					if(i == index){//this.index 0 -- 4
+						aLi[index].className = "current";
+					}
+				}
+			}
+			var j = 0;//标识
+			//自动播放
+			var timer = setInterval(function(){
+				
+				j++;
+				
+				move(j%5);// 1 2 3 4 5 ---  1 2 3 4 0
+				
+			},3000);
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			//1、this关键字
+			var name = "window";
+			var obj = {
+				name:"obj",
+			}
+			function sayName () {
+				console.log(this.name);
+			}
+			//在全局执行环境中，通过window调用的
+			sayName();//window.sayName();
+			//对obj对象添加函数属性sayName，使用全局环境中的sayName赋值。
+			obj.sayName = sayName;
+			//在全局执行环境中，通过obj对象调用
+			obj.sayName();
+			
+			//2、arguments参数
+			//求和函数，1参数 2参数 3参数 ...
+			function sum () {
+				var sum = 0;
+				for (var i = 0; i < arguments.length; i ++) {
+					sum += arguments[i];
+				}
+				return sum;
+			}
+			console.log(sum(1, 1, 1, 1, 1, 1));
+			
+			
+		</script>
+	</body>
+</html>

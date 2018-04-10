@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			
+			//策略模式：创建一个对象，方便管理相应的算法/功能
+			var stage = {
+				a : function(num){
+					return num * 2;
+				},
+				b : function(num){
+					return num * 3;
+				},
+				c : function(num){
+					return num * 4;
+				},
+				d : function(num){
+					return num * 5;
+				}
+			}
+			//获取相应策略的结果
+			var getNum = function(leve,num){
+				//leve代表选择的策略
+				return stage[leve](num);
+			}
+			
+			var result = getNum('a',1000);
+			console.log(result);
+			
+		</script>
+		
+		
+		
+	</body>
+</html>

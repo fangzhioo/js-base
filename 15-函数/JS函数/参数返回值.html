@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			/////////////////////////////////
+			//1、JS函数定义参数时，不用声明参数类型
+			
+			//打印字符串
+			//有两个参数  字符串
+			function printMessage (str, str1) {
+				console.log("刘老师" + str);
+			}
+			printMessage(18);
+			
+			//求积 --> Number
+			function multi (num1, num2) {
+				console.log(num1 * num2);
+			}
+			multi(10, 10);
+			//multi('你', '我');//可以执行，但是无意义
+			
+			//////////////////////////////////
+			//2、JS定义函数参数时，不关心函数参数具体个数
+			printMessage('是个好老师！', '这是实话');
+			
+			
+			////////////////////////////////////
+			//3、JS定义函数时，不关心返回值类型，有return，既有返回值
+			function sum (num1, num2) {
+				var s = num1 + num2;
+				return s;
+				//不会执行此语句，return结束了函数
+				console.log(s);
+			}
+			//调用求和函数，并使用log将函数返回值输出
+			console.log(sum(45, 55));
+			
+			
+			//设计一个函数，需要输入参数N，返回1+2....+(n-1)+n
+			//n 是一个非负整数
+			function sumToN (n) {
+				var res = 0;
+				for (var i = 1; i <= n; i++) {
+					res = res + i;	
+				}
+				return res;
+			}
+			console.log(sumToN(100));
+			
+			
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<style>
+			body{
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">	
+			console.log('第一个打印')
+			//等到标签加载完之后再执行
+			window.onload=function(){
+				console.log('我是终结者')
+			}
+		</script>
+		<button onclick="click1()">返回上一页</button>
+		<button onclick="click2()">进入详情页</button>
+		<button onclick="click3()">进入下一页</button>
+		<button onclick="openWin()">打开窗口</button>
+		<button onclick="fullScreen()">全屏</button>
+		<button onclick="closeWin()">关闭窗口</button>
+		
+		<script type="text/javascript">
+			
+		/*	
+			BOM（浏览器对象）Browser Object Model
+			BOM就是js获取记忆管理个个浏览器的内容
+			主要用通过window对象来管理浏览器
+			
+			BOM：
+				1.window对象的属性
+				2.常用的方法
+				3.常用的事件
+				4.定时器
+		*	
+		*	
+		**/	
+		//定义一个全局的变量，那么这个变量就是window的属性
+		var a =100;
+		console.log(window.a);
+		function fun(){
+			console.log('function')
+		};
+		fun();
+		window.fun();
+		
+		//window常用属性：document，history，location，screen。navigation等
+		function click2 () {
+			//进入详情页
+			window.location.href='bom2.html';
+		}
+		
+		
+		//常用的方法		
+		function openWin(){
+			//打开网页新窗口
+			//第一个参数：指定打开的是哪个页面
+			//第二个参数：是否是新窗口打开
+			//第三个参数：指定窗口的位置以及大小，toolbar IE浏览器有效
+			//第三个参数是窗口的特性width，height，top，left，toolbar location是否显示地址栏 (IE有效)
+			window.open('bom2.html','blank','width=400px,height=400px,top=0,left=0,toolbar=yes,location=no;')
+			
+		}
+		function fullScreen(){
+			//fullscreen IE效果最佳
+			window.open('bom3.html','','fullscreen=yes')			
+		}
+		function closeWin(){
+			//关闭窗口
+			//【注意】不同浏览器的实现有很大的差异性
+			window.close();
+		}
+		//常用的事件
+		//onload	加载
+		console.log('第二个打印')
+		
+
+		</script>
+	</body>
+</html>

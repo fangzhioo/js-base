@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script>
+			//全局函数 ---- 内置的函数，可以只使用
+			
+			//parsetInt  转整数
+			console.log(parseInt('32'));//32
+			console.log(parseInt('032acb'));//32
+			console.log(parseInt('true'));//NaN
+			//把二进制转成十进制
+			console.log(parseInt('10101',2));//21
+			//把八进制转成十进制
+			console.log(parseInt('234234',8));//80028
+			//把十六进制转成十进制
+			console.log(parseInt('0xfff',16));//4095
+			
+			//parseFloat  转成浮点型
+			console.log(parseFloat('2.6'));//2.6
+			console.log(parseFloat('2abc'));//2
+			
+			//isFinite 判断是否是无穷值
+			//Infinity 无穷大
+			console.log(isFinite(Infinity));//false
+			console.log(isFinite(-Infinity));//false
+			console.log(isFinite(1));//true
+			console.log(isFinite(0/0));//false
+			
+			//isNaN  是否是NaN
+			console.log(isNaN(NaN));//true
+			console.log(isNaN(2));//false
+			console.log(isNaN(parseInt('true')));//true
+			
+			//encodeURL  对URL编码（不可以编码字符串/URL中具有./?$&#）
+			//接口
+			var str = "http://www.baidu.com/test.php?name=小明&age=11&page=1";
+			console.log(encodeURI(str));
+			//http://www.baidu.com/test.php?name=%E5%B0%8F%E6%98%8E&age=11&page=1
+			
+			var str1 = "http://www.baidu.com/test.php?name=%E5%B0%8F%E6%98%8E&age=11&page=1";
+			//decodeURI 反编码
+			console.log(decodeURI(str1));
+			//encodeURIComponent 可以吧特殊符号也编码
+			console.log(encodeURIComponent(str));
+			//http%3A%2F%2Fwww.baidu.com%2Ftest.php%3Fname%3D%E5%B0%8F%E6%98%8E%26age%3D11%26page%3D1
+			var str3 = "http%3A%2F%2Fwww.baidu.com%2Ftest.php%3Fname%3D%E5%B0%8F%E6%98%8E%26age%3D11%26page%3D1";
+			console.log(decodeURIComponent(str3));
+			
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

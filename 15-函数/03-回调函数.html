@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//回调函数：函数作为参数，这个函数在就被称为回调函数
+			
+			//三个数的乘积
+			function fn1(a,b,c){
+				var sum = 1;
+				for (var i=0;i<arguments.length; i++) {
+					sum *= arguments[i];
+				}
+				return sum;
+			}
+			
+			
+			function fn2(i){
+				return i;
+			}
+			function fn3(a,b,c,callback){
+				var sum = 1;
+				for (var i = 0; i < arguments.length-1; i++) {
+					sum *= callback(arguments[i]);
+				}
+				return sum;
+			}
+			console.log(fn3(1,2,3,fn2));
+			console.log(fn3(2,3,4,function(i){
+				return i;
+			}))
+		
+		
+		
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form id="form1">
+			<input type="text"  id="user" placeholder="请输入用户名.."/>
+			<input type="password"  id="pass" placeholder="请输入密码.."/>
+			<a id="clear" href="#">清除缓存</a>
+			<input type="button" value="登陆" id="btn"/>
+		</form>
+		
+		<script src="Cookie.js"></script>
+		<script>
+		
+		
+			var user = document.getElementById('user');
+			var myName = getValueOfCookie('myName');
+			console.log(myName)
+			
+			//有myName的时候显示用户名
+			if(myName){
+				//让用户名的那个输入框显示myName
+				user.value = myName;
+			}
+			
+			//登录按钮   点击登录按钮 存储用户名
+			var submitBtn = document.getElementById('btn');
+			//表单事件onsubmit  点击submit按钮会触发这个事件
+			submitBtn.onclick = function(){
+				var oDate = new Date();
+				oDate.setDate(oDate.getDate() + 30);
+				
+				setCookie('myName',user.value,oDate);
+				console.log(user.value)
+			}
+			
+			//焦点聚焦
+			user.onfocus = function(){
+				console.log('onfocus')
+			}
+			//失去焦点
+			user.onblur = function(){
+				console.log('onblur')
+				console.log(user.value)
+			}
+			//onreset 点击重置按钮（type=reset） onselect 点击下拉菜单
+			
+			//清除级缓存按钮  把用户名缓存清除掉
+			var clA = document.getElementById('clear');
+			
+			clA.onclick = function(){
+				removeKeyOfCookie('myName');
+			}
+			
+			
+			/*
+			 * cookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的压力，
+			 * 但是有很多局限性：
+			 * 第一：
+			 * 1.IE6或者更低版本最多只能存20个cookie
+			 * 2.IE7或更高版本，最多能存50个cookie
+			 * 3.FF最多50个
+			 * 4.opera最多30个
+			 * 5.chrom、safari没有硬性要求
+			 * 浏览器定期清除早期的cookie，IE和opera会清理近期最少用的cookie，FF会随机清理
+			 * 
+			 * 第二：cookie的最大为4096字节（4kb），一般不会超过4095，
+			 * 存储的大小这么小是为了操作方便，让他更加灵活
+			 * 
+			 * 第三：cookie存储在客户端的文本文件，所以特别重要和敏感的数据建议是不要使用cookie存储
+			 * 比如：银行卡号和密码，用户名和密码，但是存储这种信息我们可以加密
+			 * */
+			
+			
+			
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

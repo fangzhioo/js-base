@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="ajax.js"></script>
+		<style>
+			div{
+				width: 100px;
+				height: 40px;
+				background-color: red;
+				border: 4px solid yellow;
+				margin: 20px;
+				line-height: 40px;
+				text-align: center;
+				font-size: 38px;
+				color: white;
+				font-weight: 800;
+				display: inline-block;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<div>HTML5</div>
+		<div>CSS</div>
+		<div>JS</div>
+		<p></p>
+
+		
+		<script>
+			
+			//Ajax  异步javacriopt对象和XML，他是一种技术，可以异步请求的技术
+			
+			//{"name":"小明","age":18,"}  "<name>小明</name>,<age>18</age>""
+			/*
+			 * 同步：顺序执行，相等于请求一次后，他要等到请求完毕，得到服务器响应后，
+			 * 		才能进行下一次请求
+			 * 
+			 * 
+			 * 异步：同时执行，请求一次后，不需要等请求完毕，就可以进行下一次请求
+			 * 
+			 * //异步操作用户体验更好
+			 */
+			
+			
+			/*
+			 * Ajax的使用步骤：
+			 * 			1.创建请求对象  XMLHttpRequest
+			 * 				XMLHttpRequest存在兼容性问题：IE和非IE
+			 * 				非IE：XMLHttpRequest
+			 * 				IE： ActiveXObject
+			 * 		
+			 * 			2.打开与服务器的链接
+			 * 			   打开一个URL，open(url,method,async)方法
+			 * 			  url就是请求的地址，method(get,post),async(同步or异步)
+			 * 
+			 *          3.发送请求
+			 *            send方法去发送请求
+			 * 
+			 * 			4.接受服务器响应
+			 * 				根据响应解析数据，然后将数据数显示在响应html标签上
+			 * 
+			 * 			 请求对象有5种状态（状态吗）
+			 * 					0：表示初始化未完成，只是创建了request对象，还未调用open方法
+			 * 					1：请求开始，开始调用了open方法，但是么看有调用send方法
+			 * 					2：请求发出，已经调用send方法
+			 * 					3：开始接受服务器响应
+			 * 					4：读取服务器响应（over）
+			 * 
+			 * 			但是接收到了响应并不意味着我们就能拿到数据
+			 * 				响应服务器的状态码：
+			 * 					200：响应正常
+								404：找不到访问的页面（url）
+			 * 					500：服务器异常
+			 * */
+			
+			
+			 
+			//拿到所有的div
+			var divArr = document.getElementsByTagName('div');
+			var p = document.querySelector('p');
+			
+			for (var i = 0; i < divArr.length; i++) {
+				//给每个div添加属性index
+				divArr[i].index = i;
+				//给每个div绑定click事件
+				divArr[i].onclick = function(){
+					//请求数据
+//					getData('JSON/' + this.index + '.txt',function(str)
+					var self = this;
+					getData('JSON/json1.json',function(str){
+						//拿到数据之后，实现某个功能
+						var dataObj = JSON.parse(str);
+						console.log(dataObj);
+						console.log(dataObj instanceof Array);//true
+						p.innerHTML = dataObj[self.index];
+					},function(){
+						alert("服务器和别人私奔了");
+					});
+					
+					console.log('已经执行了');
+					console.log('sssss');
+				}
+			}
+			
+//			function show(str){
+//				console.log(str);
+//			}
+//			show(oAjax.responseText);
+
+</script>
+		
+	</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.centerdiv{
+				width: 600px;
+				height: 600px;
+				margin: 60px auto; 
+				border: solid medium green;
+				/*overflow: hidden;*/
+			}
+			.smalldiv{
+				width: 298px;
+				height: 298px;
+				border: 1px solid red; 
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			
+			//使用createElement()创建居中的div，设置绿色边框
+			//传入标签名
+			var div =document.createElement('div');
+			//将div添加到文档区域
+			var body= document.querySelector('body');
+			body.appendChild(div);
+			//对div添加class属性
+			div.setAttribute('class','centerdiv');
+			
+			//循环结构
+			for(var i=1;i<=4;i++){
+				var sdiv =document.createElement('div');
+				sdiv.setAttribute('class','smalldiv');
+				div.appendChild(sdiv);
+			}
+			//清除小方块
+			while(div.hasChildNodes()){
+				div.removeChild(document.querySelector('.centerdiv>div'));
+			}
+	
+//			var div1 =document.createElement('div');
+//			var div2 =document.createElement('div');
+//			var div3 =document.createElement('div');
+//			var div4 =document.createElement('div');			
+//			div.appendChild(div1);
+//			div.appendChild(div2);
+//			div.appendChild(div3);
+//			div.appendChild(div4);
+//			div1.setAttribute('class','smalldiv');
+//			div2.setAttribute('class','smalldiv');
+//			div3.setAttribute('class','smalldiv');
+//			div4.setAttribute('class','smalldiv');
+			
+			
+		</script>
+	
+	</body>
+</html>

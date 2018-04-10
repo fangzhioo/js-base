@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			/*
+			      原型protoype：
+			          每个构造函数都有一个原型属性prototype，这个原型属性指向一个原型对象，
+			          可以给  这个原型对象声明属性和方法，这写属性和方法，可以通过构造函数
+			          创建出来的对象实例来使用，也就是说，原型对象添加的属性和方法，用该构造函数，
+			          创建的对象也拥有这些属性和方法,这个过程我们可以理解成继承
+			 * 
+			 * 面向对象思想：    封装 、 继承 、多态
+			 * 
+			 * 类         人类   ----- 男人和女人         父类   ----- 子类
+			 * 子类有什么特点：会继承父类的属性和行为
+			 * 
+			 * */
+			
+			//自定构造函数
+			function Dog(name){
+				//声明属性
+				this.name = name,
+				this.bark = function(){
+					console.log("汪汪汪");
+				}
+			}
+			//实例化一个对象
+			var dahuang = new Dog('大黄');
+			//调用对象的方法
+			dahuang.bark();
+			
+			//自定义的构造函数
+			function Cat(){
+				//什么也不写 ，还是想让用Cat创建的对象也具有名字name和叫bark方法
+				this.bark = function(){
+					console.log("喵~~~~~~~~");
+				}
+			}
+			//给构造函数的原型添加属性和方法
+			Cat.prototype.name = "小猫";
+			Cat.prototype.bark = function(){
+				console.log("喵喵喵");
+			}
+			
+			var xiaomao = new Cat();
+			xiaomao.bark();
+			console.log(xiaomao.name);
+			//只要是构造函数都有prototype这个属性
+			console.log(Dog.prototype);
+			console.log(Cat.prototype);
+			//构造函数的原型对象，你可以把它理解成类，构函数可以理解成模板
+			//人类 （吃）  -----   小明  （吃）
+			//所有的人（每个人这个对象）都会继承人类共同的特征
+			//而原型对象就相当于人类   ------ 而是用构造函数创建的xiaomiao对象就相当于每个人
+			var damao = new Cat();
+			damao.bark();
+			
+			
+			console.log("大黄：",dahuang);
+			console.log("小猫：",xiaomao);
+			//对象的属性首先是去找自身是不是有这个属性和方法，如果有是用这个属性和方法
+			//如果没有去原型上找相应的属性和方法
+			
+			
+			//构造函数的prototype（原型属性）和这个构造函数创建的对象的__proto__指向是一样的
+			//指向相同的原型对象
+			console.log(xiaomao.__proto__  == Cat.prototype);//true
+			
+		</script>
+	</body>
+</html>

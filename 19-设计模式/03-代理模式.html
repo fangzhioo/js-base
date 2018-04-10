@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			
+			//代理模式：一个对象想要执行某个行为，自己不去实现，让别人去实现
+			
+			//小明喜欢小红，圣诞节到了，小明想要送小红一朵花，委托小强去送
+			
+			//构造函数
+			var Flower = function(name){
+				this.name = name;
+			}
+			//小明
+			var xiaoming = {
+				sendFlower : function(target){
+					var flower = new Flower('向日葵');
+					target.recive(flower);
+				}
+				
+			}
+			
+			//小红
+			var xiaohong = {
+				
+				recive : function(flower){
+					console.log('接受到了鲜花一大枚：',flower.name);
+				}
+				
+			}
+			
+			//小强
+			var xiaoqiang = {
+				recive : function(flower){
+					xiaohong.recive(flower);
+				}
+			}
+			//小明要送花指定小强代理
+			xiaoming.sendFlower(xiaoqiang);
+		</script>
+		
+		
+	</body>
+</html>

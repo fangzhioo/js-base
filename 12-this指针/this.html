@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//全局代码中的this
+			console.log(this);//Window
+			//在全局代码中声明的变量其实是window的属性
+			var a = 10;
+			console.log(a,window.a,this.a);//10 10 10
+			
+			//在全局代码中声明的函数也是window的属性
+			function fn(){
+				console.log('function');
+			}
+			fn();//function
+			window.fn();//function
+			this.fn();//function
+			
+			
+			//构造函数
+			function Person(){
+				//this 是用这个构造函数创建的对象
+				this.a = 10;
+				this.b = 20;
+				
+				console.log(this);
+			}
+			var per = new Person();
+			console.log(per.a);
+			
+			Person();//Person里的this是window
+			//Window.Person();
+			
+			function show(){
+				console.log(this);//Window
+			}
+			show();
+			
+			//函数作为对象的属性值
+			var obj = {
+				x : 10,
+				fn : function(){
+					console.log(this);
+				}
+			}
+			
+			obj.fn();//this  ---  obj
+			
+			var fn1 = obj.fn;
+			/*
+			var fn1 = function(){
+				console.log(this);
+			}*/
+			fn1();//this ---- Window
+			//this是动态的 和执行环境有关
+			
+			function fn2(a,b){
+				console.log(this.x,a,b);
+			}
+			fn2(1,2);//undefined
+			
+			//call()方法给以绑定this指针的指向
+			fn2.call(obj,1,2);//10
+			fn2.apply(obj,[1,2]);//函数的参数必须是数组或者是类数组的对象（arguments）
+			
+
+			function Dog(name,age,type){
+				this.name = name;
+				this.age = age;
+				this.type = type;
+			}
+			function Cat(name,age,num){
+//				this.name = name;
+//				this.age = age;
+				this.num = num;
+				Dog.call(this,name,age);//Window.Dog()
+			}
+			/*
+			function Animal(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			Dog.prototype = new Animal();
+			Cat.prototype = new Animal();
+			*/
+			var cat1 = new Cat("mm",'11','12');
+			var cat2 = new Cat("mm",'11','12');
+			
+			console.log(cat2.name);//mm
+			
+			var a = 10;
+			function fn3(){
+				console.log(this);//Window
+				var a = 10;
+				function fn4(){
+					//null  ---- 隐士转换  ----- Window
+					console.log(this);//Window
+				}
+				//null.fn4()
+				fn4();
+			}
+			//this.a 
+			this.fn3();//fn3()
+			
+			var obj1 = {
+				x  : 10,
+				fn : function(){
+					console.log(this.x);//10
+					//解决方案  把this存储起来
+					var self = this;
+					function fn1(){
+						console.log(self.x);//undefined   this -- null -- window
+					}
+					fn1();
+				}
+			}
+			
+			obj1.fn();
+		</script>
+	
+	</body>
+</html>

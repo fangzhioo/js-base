@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 200px;
+				height: 400px;
+				background-color: red;
+				position: absolute;
+				/*默认隐藏*/
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box"></div>
+		
+		<script>
+			var box = document.getElementById('box');
+			//鼠标右键事件
+			document.oncontextmenu = function(e){
+				//window.event 在IE浏览器中event事件绑定在window上的 
+				//非IE 就是直接使用，绑定在事件上的
+				e = e || window.event;
+				
+				//点击右键显示div
+				box.style.display = "block";
+				//鼠标在哪点击 div出现在哪里
+				box.style.left = e.clientX + "px";
+				box.style.top = e.clientY + "px";
+				//阻止浏览器默认行为  某些事件/元素 ，浏览器有自己的默认行为
+				//比如：点击右键弹出的菜单  a标签的链接  拖入图片的显示等等
+				
+				//最简单的阻止默认行为
+//				return false;
+				//阻止默认行为
+				//非IE
+				e.preventDefault();
+				//IE
+				e.returnValue = false;
+			}
+			
+		</script>
+	</body>
+	
+	
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>hello world</h1>
+		<script type="text/javascript">
+			
+			//h1 --> hello world --> 分割（索引2）
+			var tn= document.querySelector('h1').childNodes[0].splitText(2);
+			console.log(tn);
+			//截取到的文本节点添加到body
+			document.querySelector('body').appendChild(tn);
+			
+			//新建文本节点
+			var textnode=document.createTextNode('012345678');
+			//根据偏移量去分割节点,并获得spliText()返回的文本节点
+			var returnvalue= textnode.splitText(2);
+			//添加节点到h1节点
+			document.querySelector('h1').appendChild(textnode);
+			//添加spliText()返回的文本节点到body节点
+			document.querySelector('body').appendChild(returnvalue);
+			
+		</script>
+	</body>
+</html>

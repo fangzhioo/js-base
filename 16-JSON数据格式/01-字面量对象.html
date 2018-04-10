@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script>
+			//字面对象
+			var person = {
+				name : "小明",
+				age : 18,
+				dog :{
+					dogName : '大黄',
+					age : 1
+				},
+				friends : [
+					{
+						friendName : "小红",
+						age : 17
+					},
+					{
+						friendName : "小强",
+						age : 19
+					}
+				]
+			};
+			
+			//对象如果没有方法（没有属性的属性值是function），
+			
+			//获取对象中所有的数据
+			//遍历
+			for (var atr in person) {
+//				console.log(atr);//属性
+//				console.log(typeof atr);//string
+				
+				if(atr === "name"){
+					console.log("姓名：",person[atr]);
+				}
+				if(atr == "friends"){
+					//frineds 数组  ----- 对象（元素）
+					var arr = person["friends"];
+					for (var i = 0; i < person[atr].length; i++) {
+//						{
+//							friendName:
+//						}
+//						{
+//							friendName:
+//						}
+						console.log("朋友：",person[atr][i].friendName);
+					}
+				}
+			}
+			
+			
+		/*
+		             地区：北京地区，河北地区，安徽地区.....
+		 *          -->   学校：北京大学，清华大学.........
+		 * 				-->  班级：H5-0001，H5-0002.....
+		 * 					--> 学生：
+		 * 							 姓名：小明，小强.....
+		 * 							 性别：
+		 * 							
+		 * */
+			
+			var rootObj = {
+				//地区
+				regions:[
+					{
+						regionName: "北京地区",
+						schools :[
+							{
+								schoolName:"北京大学",
+								classes:[
+								   {
+								   		className: "H5-001",
+								   		students:[
+								   			{
+								   				name:"小明",
+								   				sex :"男"
+								   			},
+								   			{
+								   				name:"小红",
+								   				sex :"女"
+								   			}
+								   		]
+								   },
+								   {
+								   		className: "H5-002",
+								   		students:[
+								   			{
+								   				name:"小明2",
+								   				sex :"男"
+								   			},
+								   			{
+								   				name:"小红2",
+								   				sex :"女"
+								   			}
+								   		]
+								   }
+								]
+							}
+						]
+					},
+					{
+						regionName: "安徽地区",
+						schools :[
+							{
+								schoolName:"安徽大学",
+								classes:[
+								   {
+								   		className: "H5-001",
+								   		students:[
+								   			{
+								   				name:"小明3",
+								   				sex :"男"
+								   			},
+								   			{
+								   				name:"小红3",
+								   				sex :"女"
+								   			}
+								   		]
+								   },
+								   {
+								   		className: "H5-002",
+								   		students:[
+								   			{
+								   				name:"小明4",
+								   				sex :"男"
+								   			},
+								   			{
+								   				name:"小红4",
+								   				sex :"女"
+								   			}
+								   		]
+								   }
+								]
+							}
+						]
+					}
+				]
+			}
+			
+			//所有的地区，是一个数组
+			var arr = rootObj.regions;
+			//遍历地区数组，查找每一个地区
+			for (var i = 0; i < arr.length; i++) {
+				//每一个地区是对象
+				//每个地区都有名字(对象的属性)
+				console.log(arr[i].regionName);
+				//每个地区都学校，而学校是一个数组
+				//该地区下所有的学校
+				var scArr = arr[i].schools;
+				//遍历学校数组，查找每个学校
+				for (var j = 0; j < scArr.length; j++) {
+					//每个学校是个对象
+					//每个学校都有名字（对象的属性）
+					console.log("-->",scArr[j].schoolName);
+					//每个学校都与班级
+					//所有的班级
+					var caArr = scArr[j].classes;
+					for (var z = 0; z < caArr.length; z++) {
+						
+						console.log('    --->',caArr[z].className);
+						//所有的学生
+						var stArr = caArr[z].students;
+						for (var y = 0; y < stArr.length; y++) {
+							//每个学生都有姓名性别
+							console.log("      --->",stArr[y].name,stArr[y].sex);
+						}
+					}
+				}
+			}
+			
+			
+		</script>
+		
+		
+		
+		
+		
+		
+	</body>
+</html>

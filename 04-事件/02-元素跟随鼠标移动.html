@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#div{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+				top: 0;
+				left: 0;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body style="background-color: blue;">
+		
+		<div id="div">
+			
+		</div>
+		
+		<script>
+			//Event对象 ，是事件中的一个参数（隐藏参数），在事件绑定的函数内可以直接使用
+			
+			var div = document.getElementById('div');
+			//event隐藏参数，如果使用就写上
+			//event对象包含该元素出发事件时的一些信息
+			document.onmousemove = function(e){
+				//type 发生事件的类型
+				console.log(e.type);
+				//发生事件的元素/节点
+				console.log(e.target,this);
+				//clientX  clientY鼠标相对于浏览器的x，y坐标
+				console.log(e.clientX,e.clientY);
+				//鼠标相对于显示器左上角的x，y坐标
+				console.log(e.screenX,e.screenY);
+				
+				div.style.left = e.clientX + "px";
+				div.style.top = e.clientY + "px";
+				
+			}
+			
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

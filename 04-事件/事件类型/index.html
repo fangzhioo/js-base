@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			.eventdiv{
+				height: 400px;
+				width: 400px;
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="eventdiv">
+				
+		</div>
+		
+		<script type="text/javascript">
+		
+			function addListener(type,callback){
+				document.querySelector('.eventdiv')[type]=callback;				
+			}
+			//document.querySelector('.eventdiv')['ondblclick']   下标访问
+			document.querySelector('.eventdiv').ondblclick=function(){
+				console.log('dblclick');				
+			};
+			
+			addListener('onmousedown',function(){
+				console.log('mousedown')
+			})
+			
+			addListener('onmouseup',function(){
+				console.log('mouseup')
+			})
+			addListener('onmouseover',function(){
+				console.log('mouseover')
+			})
+			addListener('onmousemove',function(){
+				console.log('mousemove')
+			})
+			addListener('onmouseout',function(){
+				console.log('mouseout')
+			})
+			
+			
+			
+		</script>
+	</body>
+</html>

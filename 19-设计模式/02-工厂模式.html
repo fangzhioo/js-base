@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//工厂模式：和现实中的工厂类似，只需要把需求告诉工厂，工厂就会生产相应的产品
+			var productManager = {};
+			//这个工厂对象里面生产产品的模板
+			productManager.CreateDucA = function(){
+				console.log('生产了A');
+			}
+			productManager.CreateDucB = function(){
+				console.log('生产了B');
+			}
+			//工厂方法    根据用户传进来的参数，生产相应的产品
+			productManager.factory = function(type){
+				
+				return new productManager[type];
+			}
+			//调用工厂方法 ，告诉工厂生产什么产品
+			productManager.factory('CreateDucA');
+			productManager.factory('CreateDucB');
+			
+			
+			//使用工厂方法创建不同的元素（图片，链接，文本....）
+			var eleManager = {};
+			eleManager.dom = {};
+			
+			eleManager.dom.Text = function(){
+				//创建文本节点
+				
+			}
+			eleManager.dom.Link = function(){
+				//创建链接节点
+				this.insert = function(where){
+					var a = document.createElement('a');
+					a.href = this.url;
+					a.className = this.name;
+					a.innerHTML = this.html;
+					//。。。。。。。。
+					where.appendChild(a);
+				}
+			}
+			eleManager.dom.Image = function(){
+				//创建图片节点
+				this.insert = function(where){
+					//参数where：当前创建的元素需要插入到那个元素内
+					//创建img元素
+					var img = document.createElement('img');
+					
+					//src
+					img.src = this.url;
+					
+					//添加到某个元素内
+					where.appendChild(img);
+				}
+			}
+			
+			//工厂方法
+			eleManager.dom.factory = function(type){
+				//返回创建的节点
+				return new eleManager.dom[type];
+			}
+			
+			//new Image()   ---- Image类型的对象
+			var oImage = eleManager.factory('Image');//new Image();
+			oImage.url = "www.oneimage.com";
+			oImage.insert(document.body);
+			
+			
+			/*工厂模式的用处：
+			 	1.对象的结构十分复杂
+			 	2.需要依赖具体环境创建不同的实现
+			 	3.处理具有大量相同属性的小对象
+			 	
+			 	【注】；不要轻易使用工厂模式，否则会让创建对象的方式更加麻烦
+			 * */
+		</script>
+		
+		
+		
+	</body>
+</html>

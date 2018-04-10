@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//装饰者模式:用其他的构造函数的方法修饰一个对象的方法
+			function Macbook(){
+				this.count = function(){
+					return 10000;
+				}
+			}
+			
+			function Memory(mackbook){
+				this.count = function(){
+					return mackbook.count() + 5000;//15000
+				}
+			}
+			
+			function Drive(mackbook){
+				this.count = function(){
+					return mackbook.count() + 3000;//18000
+				}
+			}
+			
+			function Dist(mackbook){
+				this.count = function(){
+					return mackbook.count() + 2000;//20000
+				}
+			}
+			
+//			var bookMoney = new Dist(new Drive( new Memory( new Macbook())));
+			var mac = new Macbook();
+			var me = new Memory(mac);
+			var dir = new Drive(me);
+			var dist = new Dist(dir);
+			//总的价格
+			console.log(dist.count());
+			
+		</script>
+		
+		
+	</body>
+</html>

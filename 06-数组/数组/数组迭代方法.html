@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			var arr = [1, 2, 3, 4, 5, 6, 3, 2];
+			//every()	参数函数全部返回真值，every()返回真值
+			function cb (obj, index, arr) {
+				return obj > 3;
+			}
+			var re = arr.every(cb);
+			console.log(re);
+			
+			//some()		参数函数只要有一个返回真值，some()返回真值
+			var re2 = arr.some(cb);
+			console.log(re2);
+			var re3 = arr.some(function (obj, index, arr) {
+				return obj > 3;
+			});
+			console.log(re3);
+			
+			//filter()	过滤掉不符合条件的元素，剩下的元素以新数组的形式返回
+			var arr2 = arr.filter(function (obj, index, arr) {
+				return obj >= 3;
+			});
+			console.log(arr2);
+			
+			//forEach()  对每个元素，执行特定操作
+			arr.forEach(function (obj, index, arr) {
+				obj ++;
+			});
+			console.log(arr);
+			
+		</script>
+	</body>
+</html>

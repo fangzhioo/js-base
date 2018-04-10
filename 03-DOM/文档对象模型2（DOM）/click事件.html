@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div_click{
+				height: 100px;
+				width: 100px;
+				background: aqua;	
+				border: 1px black solid;			
+			}						
+		</style>
+	</head>
+	<body>
+		
+		<div id="div_click">	
+		</div>
+		<script type="text/javascript">
+			
+			//获取到div元素
+			var div=document.querySelector('#div_click');
+			//对div添加点击事件
+			//鼠标的单击事件
+			div.onclick=function(){
+				alert('你点击了我');
+				
+			};
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//正则表达式     是一种匹配模式，(本质其实就是个字符串)
+			//用处：主要是在数据的过滤、检测、排除、验证、检索等等的情况下使用
+			
+			//构造函数创建
+			var reg = new RegExp('box');
+			//g 全局  也可以传i  忽略大小写
+			reg = new RegExp('box','g');
+			//字面量方式
+			console.log(reg);
+			//两个/ / 是匹配规则
+			reg = /box/;//模式
+			reg = /box/gi;//模式/模式修饰符
+			
+			var str = "this is aBoX box Box box";
+			//test验证某个字符串是不是匹配当前模式
+			//console.log(reg.test(str));//匹配成功是true
+			//console.log(reg.test(str));
+			//exec  验证
+			console.log(reg.exec(str))
+			//["box", index: 13, input: "this is aBoX box Box"]
+			//匹配的模式   第一个匹配成功的索引  匹配的字符串
+			console.log(reg.exec(str))
+			//["Box", index: 17, input: "this is aBoX box Box"]
+			console.log(reg.exec(str))//null
+//			console.log(reg.exec(str).index);
+			/*
+			   exec   验证某个字符串是不是匹配当前模式
+			     返回值：如果匹配成功[匹配的模式   这一次匹配成功的索引  匹配的字符串] 
+			                   如果不成功 返回值是null
+			 * 
+			 * 调用：多次调用这个方法，他是从上一次匹配成功的索引开始继续向下匹配，
+			 * 如果之前调用了test方法，他会接着test匹配成功的索引开始
+			 * */
+			
+			var str1 = "a a a bbb a aaaaa vvv";
+			var reg1 = /a/gi;
+			var ret;
+			while((ret = reg1.exec(str1)) != null){
+				console.log(ret.index);
+			}
+//			while(1){
+//				//ret存储验证的到的返回值
+//				ret = reg1.exec(str1);
+//				if(ret == null){
+//					break;
+//				}else{
+//					console.log(ret.index);
+//				}
+//			}
+		
+		
+		//compile 修改正则表达的模式
+		reg.compile('bob','g');
+		console.log(reg);
+		
+		//字符串与正则相关的函数
+		
+		var str4 = "this is a bob bob bob";
+		//match 返回子串组成的数组   匹配不成功null
+		console.log(str4.match(reg));
+		//search 返回的是下标  匹配不成功-1
+		console.log(str4.search(reg));
+		//replace 匹配成功会替换子串
+		console.log(str4.replace(reg,'tom'))
+		
+		
+		</script>
+		
+		
+	</body>
+</html>

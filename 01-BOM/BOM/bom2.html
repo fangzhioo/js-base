@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>详情页</title>
+		<style type="text/css">
+			body{
+				background-color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<button onclick="click1()">返回上一页</button>
+		<button onclick="click2()">进入关于我们</button>
+		<button onclick="click3()">进入下一页</button>
+		<button onclick="refresh()"></button>
+	</body>
+	<script type="text/javascript">
+		function click2(){
+			window.location.href='bom3.html';
+		};
+		function click1(){
+			//上一页
+			//history管理历史浏览器
+			window.history.back();				
+		}
+		function click3(){
+			//下一页
+			window.history.forward();
+		}
+		function refresh(){
+			//刷新页面 带本地缓存
+			window.location.reload();
+			//刷新页面 不使用本地缓存 重新到服务器下载
+			window.location.reload(true);
+		}
+	</script>
+</html>

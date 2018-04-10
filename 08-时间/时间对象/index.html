@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			//1、定义并初始化时间对象
+			//获取系统当前时间
+			var nowDate = new Date();
+			console.log(nowDate);
+			
+			//2、Date()传参-->时间戳
+			//当前时间的时间戳值 getTime()
+			console.log(nowDate.getTime());
+			//时间对象转时间戳
+			console.log(Date.parse(nowDate));
+			var preDate = new Date(0);
+			console.log(preDate);
+			
+			//3、Date()传参-->时间格式字符串
+			//yyyy-MM-dd hh:mm:ss
+			var nextDate = new Date('2016/11/19 00:00:00');
+			console.log(nextDate);
+			
+			//年，月，日，时，分，秒，毫秒
+			var nextDate2 = new Date(Date.UTC(2016,11,19,10,10,10));
+			console.log(nextDate2);
+			
+			
+			//4、时间对象转字符串
+			var now = new Date();
+			console.log(now.toString());
+			//yyyy-MM-ddThh:mm:ss
+			console.log(now.toJSON());
+			//yyyy/MM/dd  yyyy年MM月dd日
+			console.log(now.toLocaleDateString());
+			//hh:mm:ss
+			console.log(now.toLocaleTimeString());
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>详情页</title>
+		
+		<style>
+			body{
+				background: green;
+			}
+		</style>
+	</head>
+	<body>
+		<button onclick = "click1()">返回上一页</button>
+		<button onclick = "click2()">进入关于我们</button>
+		<button onclick = "click3()">前进下一页</button>
+		
+		<script>
+			function click2(){
+				window.location.href = "BOM3.html";
+			}
+			
+			function click1(){
+				//上一页
+				//history 管理历史浏览记录
+				window.history.back();
+			}
+			
+			function click3(){
+				//下一页
+				window.history.forward();
+			}
+			
+			
+		</script>
+	</body>
+	
+	
+</html>

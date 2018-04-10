@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="Cookie.js"></script>
+		<script>
+			
+			//cookie  也叫 HTTP Cookie ,最初是客户端与服务端进行会话时使用的，
+			//(会话:向服务器请求数据，例如打开一个网页，然后关闭这个网页，这个过程就是一次会话)
+			//例如：会员登录，下次访问这个网站时无需登录，
+			//或者购物车，购买商品时没有及时付款，过两天购物车的里商品还有
+			
+			//cookie  要求服务器对任意HTTP请求发生送Set-Cookie
+			//因此，cookie的处理原理原则是需要在环境下才能进行，
+			//当然，现在大部分在客户端也能实现cookie的生成和获取
+			
+			/*cookie的组成  
+			    由键值对组成（一对一的关系，就是键值对），通过键去获得值
+			    每个键值对用分号；隔开
+			  name="tom";age=22;.......[expires]=date;[path]=path
+			   
+			   用户名     ---  username
+			   密码        ---  password
+			*/
+			//_bsi=13592711222169147335_00_8_R_N_219_0303_C02F_N_I_I_0; 
+			//expires=Thu, 08-Dec-16 07:38:10 GMT;
+			//domain=www.baidu.com; path=/
+			
+			//设置存储数据
+//			document.cookie = "userName=tom";
+			//如果不设置cookie存储数据的时间，当浏览器关闭的时候，这个cookie数据自动清除
+			
+			//创建一个时间  当前的时间
+			var date = new Date();
+			date.setDate(date.getDate() + 30);//30天
+			
+			console.log(date);
+			//设置userName的存储时间
+//			document.cookie = "userName=tom;expires=" + date;
+			
+			//获取数据
+			alert(document.cookie);
+			
+			
+			//自定义三个方法      设置cookie  获取cookie  删除cookie
+			var oDate = new Date();
+			oDate.setDate(oDate.getDate() + 30);
+			//设置存储数据age
+//			setCookie('sex','girl',oDate);
+			//获取age数据
+			console.log(getValueOfCookie('sex'));
+			
+			//删除数据age
+//			removeKeyOfCookie("age");
+//			console.log("删除了："+ getValueOfCookie('age'));
+		</script>
+		
+		
+		
+	</body>
+</html>

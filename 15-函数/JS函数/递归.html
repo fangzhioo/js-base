@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			
+			//设计一个函数，求n的阶乘（运用递归思想）
+			//n 为非负整数
+			function factorial (n) {
+				if (n == 1 || n == 0) {
+					//规定好了0和1的阶乘为1
+					return 1;
+				} else{
+					return n * factorial(n - 1);
+				}
+			}
+			console.log(factorial(0));
+			
+		</script>
+		
+	</body>
+</html>

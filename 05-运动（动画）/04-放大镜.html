@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#div1{
+				width: 200px;
+				height: 200px;
+				padding: 10px;
+				border: 1px solid #ccc;
+				background: red;
+				position: relative;
+			}
+			#small_pic{
+				width: 200px;
+				height: 200px;
+				position: relative;
+			}
+			
+			#float_layer{
+				width: 50px;
+				height: 50px;
+				border: 1px solid #000;
+				background: #fff;
+				opacity: 0.3;
+				position: absolute;
+				left:0;
+				top: 0;
+				display: none;
+			}
+			
+			#big_pic{
+				position: absolute;
+				top: 0;
+				left: 220px;
+				overflow: hidden;
+				width: 250px;
+				height: 250px;
+				border: 2px solid #ccc;
+				display: none;
+				
+			}
+			
+			#big_pic img {
+				position: absolute;
+				top: -100;
+				left: -100;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<div id="div1">
+			
+			<!--小图-->
+			<div id="small_pic">
+				<!--半透明盒子-->
+				<span id="float_layer"></span>
+				<img src="img/food.jpg" style="width: 200px;height: 200px;"/>
+			</div>
+			
+			<!--大图-->
+			<div id="big_pic">
+				<img src="img/food.jpg" />
+			</div>
+		</div>
+		<script src="base.js"></script>
+		<script>
+			//querySelector 只拿第一个
+			var smallPic = document.querySelector('#small_pic>img');
+			console.log(smallPic);
+			var timer;
+			//绑定mouseover  mouseout  mousemove
+			$('small_pic').onmouseover = function(e){
+			
+				
+				//显示 半透明float_layer  大图big_pic
+				$('float_layer').style.display = "block";
+				$('big_pic').style.display = "block";
+			}
+			$('small_pic').onmouseout = function(e){
+				
+
+		
+				$('float_layer').style.display = "none";
+				$('big_pic').style.display = "none";
+			}
+			
+			$('small_pic').onmousemove = function(e){
+				//float_lyer  跟着鼠标移动（不超出图片范围）
+				//移动相应的距离，右侧大图显示相应的范围
+				
+				e = e || window.event;
+				
+				//横向和纵向得到距离
+				var l = e.clientX - $('float_layer').offsetWidth/2 - $('div1').offsetLeft - 11;
+				
+				var t = e.clientY - $('float_layer').offsetHeight/2 - $('div1').offsetTop - 11;	
+				
+				console.log(e.clientX,$('div1').offsetLeft,l);
+				
+				//左侧临界
+				if(l <= 0){
+					
+					l = 0;
+					
+				}else if(l >= smallPic.offsetWidth - $('float_layer').offsetWidth ){//右侧临界
+					
+					l = smallPic.offsetWidth - $('float_layer').offsetWidth;
+				}
+				
+				if(t <= 0){//上临界
+					
+					t = 0;
+					
+				}else if(t >= smallPic.offsetHeight - $('float_layer').offsetHeight){//下临界
+					
+					t = smallPic.offsetHeight - $('float_layer').offsetHeight;
+				}
+				//半透明span跟随鼠标移动
+				$('float_layer').style.left = l + "px";
+				$('float_layer').style.top = t + "px";
+				
+				//小图100   大图1000  1px     10px
+				var percentX = l/(smallPic.offsetWidth - $('float_layer').offsetWidth);
+				var percentY = t/(smallPic.offsetHeight - $('float_layer').offsetHeight);
+				
+				//大图显示指定区域
+				var bigPic = document.querySelector('#big_pic>img');
+				//反方向移动 (框和图片 参照物交换)（互为参照物）
+				bigPic.style.left = -percentX *(bigPic.offsetWidth - $('big_pic').offsetWidth) + 'px';
+				bigPic.style.top = -percentY*(bigPic.offsetHeight - $('big_pic').offsetHeight) + "px";
+				console.log(bigPic.style.left,percentX)
+			}
+		</script>
+		
+	</body>
+</html>

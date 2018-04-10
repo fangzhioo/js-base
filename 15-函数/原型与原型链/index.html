@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			//定义函数对象首字母小写，按函数使用
+			//定义函数对象首字母大写，按对象类型（类）使用 
+			function Cat(name,age){
+				//将传入的name值赋给函数实例的属性name
+				//实例属性
+				this.name=name;	
+				this.age=age;
+				//实例方法
+				
+				this.showName =function(){
+					console.log(this.name);
+				};
+			}
+			//创建Cat的对象dahuang (类的构造方法)
+			var dahuang = new Cat('大黄',2);
+			//创建Cat的对象erhuang
+			var erhuang = new Cat('二黄',3);
+			console.log(dahuang.age)
+			dahuang.showName();
+					
+			//原型属性
+			Cat.prototype.father='老黄';//Cat 添加这个类都共有的属性
+			dahuang.father='老王'; //只改变了自己实例的属性，不会改变原型。
+			console.log(dahuang.father);
+			console.log(erhuang.father);
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

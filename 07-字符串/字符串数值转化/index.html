@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			//Number()
+			//1、纯数值字符串，直接输出对应整型或浮点型；数值字符串前有0，忽略0
+			//var str = "-999.99";
+			//2、布尔值，真转成1，假转成0
+			//var bool = false;
+			//3、undefined，转成NaN（Not a number 非数值）,NaN自身不等
+			//var undefine;
+			//4、非纯数值字符串，空串转化成0；其他，转NaN
+			var str1 = "1234abc";
+			var num = Number(str1);
+			console.log(num);
+			
+			if (NaN == NaN) {
+				console.log('成立');
+			}
+			
+			//parseInt()/parseFloat()
+			//这两个函数专门用于将字符串转化为数值
+			//1、如果第一个字符不是数值字符，返回NaN
+			var pStr1 = "a123456";
+			console.log(parseInt(pStr1));
+			//2、如果第一个字符是数值字符串，检测第二个，。。。,直到检测到非数值字符，然后将前面数值部分返回
+			var pStr2 = "1234abc";
+			console.log(parseInt(pStr2));
+			var pStr3 = "12.34";
+			console.log(parseInt(pStr3));//忽略掉小数部分
+			console.log(parseFloat(pStr3));//保留小数部分
+			var pStr4 = "12.34.56";
+			console.log(parseFloat(pStr4));//只保留第一个小数点后和第二个小数点前的部分
+			
+			//非十进制数值转化
+			var str16 = "0xFF";
+			console.log(Number(str16));
+			console.log(parseInt(str16));
+			var str16_2 = "FF";
+			console.log(Number(str16_2));
+			console.log(parseInt(str16_2));
+			//未标明格式的非十进制数，转化成十进制时，需在parserInt()函数第二个参数位置传入当前进制
+			console.log(parseInt(str16_2, 16));
+			
+		</script>
+	</body>
+</html>

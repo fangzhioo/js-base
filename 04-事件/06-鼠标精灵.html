@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 200px;
+				height: 200px;
+				background: url(girl.gif)  no-repeat;
+				position: absolute;
+			}
+			
+			body{
+				background: #000;
+				height: 2000px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box"></div>
+		
+		<script>
+			
+			document.onmousemove = function(e){
+				
+				var div = document.getElementById('box');
+				//pageX  pageY  鼠标在页面上x，y的坐标（相对文档而非浏览器窗口）
+				//pageX  pageY并不是标准属性，但是得到广泛的应用（ie不支持这两个属性）
+				//clientX  clientY鼠标相对于浏览器的x，y坐标
+				console.log(e.pageX,e.pageY,e.clientX,e.clientY);
+				div.style.left = e.pageX - 100 + "px";
+				div.style.top  = e.pageY - 100 + "px";
+				
+			}
+			
+		</script>
+		
+		
+		
+		
+	</body>
+</html>

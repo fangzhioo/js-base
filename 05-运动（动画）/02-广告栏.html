@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="base.js"></script>
+		<script src="move.js"></script>
+		<style>
+			#div1{
+				width: 150px;
+				height: 100px;
+				position: absolute;
+				top: 40%;
+				left: -150px;
+				background-color: #AAAAAA;
+			}
+			#div1 span{
+				width: 20px;
+				height: 60px;
+				position: absolute;
+				top: 20%;
+				left: 150px;
+				background-color: #9c9;
+				font-size: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="div1"><span>分享到</span></div>
+		
+		<script>
+			var oDiv = $('div1');
+			oDiv.onmouseover = function(){
+				//调用封装的缓冲运动方法
+				startMove(this,'left',0);
+			}
+			oDiv.onmouseout = function(){
+				//调用封装的缓冲运动方法
+				startMove(this,'left',-150);//-this.offsetWidth
+			}
+		</script>
+		
+		<!--<script>
+			var oDiv = document.getElementById('div1');
+			
+			//var timer;
+			
+			//div1 -150隐藏   div1 --- 0完整出来
+			oDiv.onmouseover = function(){
+				var self = this;
+				//setInterval 目的是实现移动/运动
+				var timer = setInterval(function(){
+					//速度speed
+					//var speed = 10;
+					var speed = (0- self.offsetLeft)/5;
+					//150 - 30  120 -- 24  96 -- 19.2   77  -- 15.4    0
+					speed = Math.ceil(speed);
+					//-4/4 -- 5  -- 0.8  --1/0（向下取整不中）
+					//-3/3 -- 5  -- 0.6  --1
+					//-2/2 -- 5 -- 0.4   --1
+					//-1/1 -- 5 -- 0.2  --- 1
+					//0
+					console.log(self.offsetLeft);
+					//完整出来
+					if(self.offsetLeft >= 0){
+						clearInterval(timer);
+					}else{
+						self.style.left = self.offsetLeft + speed + "px";
+						
+					}
+					
+				},30);
+			}
+//			var bol = true;
+			oDiv.onmouseout = function(){
+				
+				var self = this;
+				var myOffsetLeft = 150;
+				var timer = setInterval(function(){
+
+
+					//offsetWidth 150   offsetLeft  0  -30 - 54  -67
+					var speed =(myOffsetLeft)/5;
+					//150 - 30  120 -- 24  96 -- 19.2   77  -- 15.4    0\n
+					speed = Math.ceil(speed);
+					
+					//这步操作 是为干什么？ 为了下一次算速度的值
+					//（速度递减，减去速度值呈现递减效果）
+					//为什么减去速度值：主要就是为了和弹出的时候递减的速度一致
+					myOffsetLeft = myOffsetLeft - speed;
+					
+					if(self.offsetLeft == -150){
+						clearInterval(timer);
+					}else{
+						self.style.left = self.offsetLeft - speed + "px";
+					}
+					
+				},30)
+			}
+		</script>-->
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//new形式
+			//定义并初始化对象
+			var obj = new Object();
+			//对对象添加属性(数据属性)
+			obj.name = '小明';
+			//对对象添加方法（函数属性）
+			obj.printMessage = function () {
+				console.log('调用了obj的函数属性');
+			}
+			//使用数据属性
+			console.log(obj.name);
+			//使用函数属性
+			obj.printMessage();
+			
+			//字面量形式
+			var cat = {
+				//数据属性
+				name:"波比",
+				//函数属性（行为）
+				jump:function () {
+					console.log('波比跳了');
+				},
+				eat:function (food) {
+					console.log('波比吃了' + food);
+				}
+			};
+			//使用name属性
+			console.log(cat.name);
+			//使用eat()函数
+			cat.eat('鲱鱼罐头');
+			
+		</script>
+	</body>
+</html>

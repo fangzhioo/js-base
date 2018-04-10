@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			
+			
+			//单例模式：保证一个类实例的对象只有一个
+			
+			function Dog(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			var dog1 = new Dog('a',11);
+			var dog2 = new Dog('b',2);
+			console.log(dog1 == dog2);//false
+			
+			//第一种方式：最简单的单例对象创建方式
+			var sigleObj = {
+				name : 'a',
+				age : 12
+			};
+			
+			//第二种方式：单例对象
+			var Cat = (function(){
+				//变量用来存储第一次创建的对象
+				var instance;//第一调用undefined
+				
+				//构造函数
+				var Cat = function(name,age){
+					this.name = name;
+					this.age = age;
+					//如果有值，说明对象已经创建了
+					//第一调用new Cat 这时候的instance是undefined
+					if(instance){
+						//修改属性
+						instance.name = name;
+						instance.age = age;
+						return instance; 
+					}
+					//第一次调用new Cat 存储以下这个对象的指针this
+					instance = this;//cat1
+					return instance;
+				}
+				return Cat;
+			})();
+			//第一次创建对象
+			var cat1 = new Cat('大毛',1);//cat1 = instance
+			//再次调用new 只是修改第一次创建对象的属性
+			var cat2 = new Cat('小毛',2);
+			console.log(cat1 == cat2);//true
+			var cat3 = new Cat('小毛',2);
+			var cat4 = new Cat('小毛',2);
+			var cat5 = new Cat('小毛',2);
+			var cat6 = new Cat('小毛',2);
+			console.log(cat4 == cat5);//true
+			console.log(cat3.name);
+			
+			//第三种方式：
+			var SingleGod = function(){
+				
+				//判断instance的类型是不是object，如果是，说明已经创建了对象
+				if(typeof SingleGod.instance === 'object'){
+					//把第一次创建的对象地址返回回去
+					return SingleGod.instance;
+				}
+				//把第一次创建的对象的地址付给instance
+				SingleGod.instance = this;
+				//初始化对象属性
+				this.name = "tom";
+				this.age = 12;
+				
+			};
+			
+			var single1 = new SingleGod();
+			var single2 = new SingleGod();
+			console.log(single1 == single2);//true
+			single2.name = "mike";
+		</script>
+		
+		
+	</body>
+</html>

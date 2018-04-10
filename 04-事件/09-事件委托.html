@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li>我是第1行</li>
+			<li>我是第2行</li>
+			<li>我是第3行</li>
+			<li>我是第4行</li>
+			<li>我是第5行</li>
+			<li>我是第6行</li>
+			<li>我是第7行</li>
+			<li>我是第8行</li>
+			<li>我是第9行</li>
+			<li>我是第10行</li>
+			<!--此处省略一万行li-->
+		</ul>
+		<script>
+			//冒泡 -- 他会触发父级的事件
+			//冒泡也有好处：比如我们有很多行的表格，或者很多行的列表
+			//假如给每一行都绑定事件，性能就是个大问题
+			
+			//事件委托：利用冒泡的原理，把事件绑定到父级上，父级触发事件执行效果
+			//好处：1.提高性能  2.新添加的元素，也会有之前绑定的方法
+			
+			var ul = document.getElementById('ul1');
+			var aLi = document.getElementsByTagName('li');
+			/*
+			for(var i = 0; i < aLi.length; i++){
+				aLi[i].onclick = function(){
+					console.log('li');
+					this.style.color = "red";
+				}
+			}*/
+			
+			ul.onclick = function(e){
+//				this.style.color = "red";
+				//target 被点击触发该事件的目标/元素
+//				console.log(e.target);
+				//currentTarget 当前绑定事件的目标/元素
+//				console.log(e.currentTarget);
+				//【注】处理兼容通用方式如下
+				//event的兼容
+				var myEvent = e || window.event;
+				//e.target非IE    e.srcElement -- IE
+				var target = myEvent.target || myEvent.srcElement;
+				
+				target.style.color = "red";
+				
+				//ie8以下：使用target 无法获取未定义或 null 引用的属性“target”
+			}
+			function fn(a){
+//				a = a || 0;
+//				a = a || "";
+				
+			}
+		</script>
+	</body>
+</html>

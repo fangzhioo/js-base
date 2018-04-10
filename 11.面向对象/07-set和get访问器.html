@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script>
+			
+			function Person(name,age){
+				//公有属性
+				this.name = name;
+				this.age = age;
+//				this.sex = sex;
+				//私有属性
+				var sex = "什么也不是";;
+				
+				//设置当前对象的_sex属性的set和get访问器
+				//只读方法 只有get访问器--- 只写方法只有set访问器
+				Object.defineProperty(this,'sex',{
+					//set访问器
+					set : function(mySex){
+						
+						if(mySex == "男" || mySex == "女"){
+							sex = mySex;
+						}else{
+							//设置默认值
+//							sex = "什么也不是";
+							console.log("这个物种真没有");
+							
+						}
+					},
+					//get访问器
+					get : function(){
+						return sex;
+					}
+				})
+			}
+			
+			var per = new Person("tom",'11');
+			//公有属性用对象能直接访问
+			console.log(per.name,per.age);
+			//私有属性不能使用对象直接访问
+			console.log(per._sex);//undefined
+			
+			per.sex = "男";
+			console.log(per.sex);//男
+			
+		</script>
+		
+		
+		
+		
+	</body>
+</html>

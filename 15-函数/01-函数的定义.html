@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			/* 函数：
+			 * 1.函数式完成某一功能的代码
+			 * 2.函数是可以重复执行的代码
+			 * 3.函数方便管理和维护
+			 * 
+			 */
+			
+			//创建函数/函数的声明
+			function fn1(){
+				console.log('fn1');
+			}
+			//函数名称的区分的大小写，定义函数的时候通常都是小写，只构造函数是首字母大写
+			function FN1(){
+				console.log('FN1');
+			}
+			fn1();
+			FN1();
+			/*
+			 * 注意：
+			 * 1.函数名不要包含特殊字符
+			 * 2.函数名最好要有明确的含义
+			 * 3.函数名最好通过驼峰写法或者加下划线_来命名_show  showName  show
+			 * 4.严格区分大小写
+			 * 5.同名的函数名会覆盖
+			 * 6.函数可以没有参数，也可以多个参数
+			 * 7.函数也可以作为参数
+			 * 8.函数的返回值使用return，没有return默认返回的是undefined，函数也可以作为返回值
+			 * 9.函数只有调用才会执行
+			*/
+			
+			function fn3(){
+				return null;
+				return undefined;
+				return;//undefined
+				return fn1;
+			}
+			
+			function fn4(num1,num2){//形参
+				return num1 + num2;
+			}
+			console.log(fn4(1,2));
+			console.log(fn4(1));
+			console.log(fn4(1,2,3,4,5));
+			
+			//在ES5中函数的形参不能写默认值
+			function fn5(num1 = 10,num2 = 5){//形参的默认值是若果不传参就取默认值
+				return num1 + num2;//这是ES6的写法，ES6中形参可以写默认值
+				//这里面默认值有效是因为浏览器和IDE都支持了ES6的语法
+			}
+			console.log(fn5());//15
+			
+			//在ES5中处理参数的默认值
+			//第一种方式
+			function fn6(num1,num2){//参数不传默认是undefined
+				console.log(num1);//undefined
+				if(num1 === undefined){
+					num1 = 10;
+				}
+				if(num2 === undefined){
+					num2 = 5;
+				}
+				return num1 + num2;
+			}
+			console.log(fn6());//15
+			
+			//第二种方式
+			function fn7(num1,num2){
+				num1 = num1 || 10;
+				num2 = num2 || 5;
+				//num2 = num2===undefined?5:num2;
+				return num1 + num2;
+			}
+			console.log(fn7());//15
+			
+			//arguments是函数自带的属性 ，只要创建函数就有arguments(参数/变量)
+			function fn8(){
+				//argument是用来存储参数的，arguments是类数组对象
+				console.log(arguments);
+				console.log(typeof arguments);//object
+				//arguments[0]//这个0是属性
+			}
+			fn8(1,3);
+			
+			//可以改变参数形式
+			//求参数的和
+			function fn9(){
+				var sum = 0;
+				for (var i = 0; i < arguments.length; i++) {
+					sum += arguments[i];
+				}
+				return sum;
+			}
+			console.log(fn9(2,5,8,4,8,6,3,2,5,6,6767778));//6767827
+			
+			//返回参数中最大的值
+			function fn10(){
+				var max = 0;
+				for (var i = 0; i < arguments.length; i++) {
+					if(arguments[i] > max){
+						max = arguments[i];
+					}
+				}
+				return max;
+			}
+			console.log(fn10(1,2,3,4,5,6));//6
+			
+		</script>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<form action="#" method="post">
+			用户名：<input type="text" id="userName" name="userName" />
+			<br />
+			密码：<input type="password" id="passWord" name="passWord" />
+			<br />
+			<input type="submit" value="注册"/>
+		</form>
+		
+		<script>
+			
+			/*
+			     POST请求和GET请求
+			 * 多米搜索接口 
+			 * http://v5.pc.duomi.com/search-ajaxsearch-searchall?kw=love&pi=1&pz=30
+			 * 网址：http://v5.pc.duomi.com/search-ajaxsearch-searchall
+			 * 参数：?kw=love&pi=1&pz=30
+			 *1. 后台定义：kw--关键字  pi-页数  pz-条数
+			 *2.前端发起请求，后台可以通过参数的名字过滤数据（返回你想要的数据）
+			 *3.？后面代表参数 
+			 *4.参数是有名字和值组成（key=value），
+			 *5.key是后台规定的，都有意义，value是我们传过去的，后台根据传过来的value返回你想要的数据
+			 *6.多个键值对之间用&连接
+			 * 
+			 * 
+			 * GET:明文请求，会在URL后面以？号的形式添加请求参数，参数之间用&分隔，用户可见的
+			 * 
+			 * 
+			 * POST：密文请求，请求信息会放在请求体中，不会暴露在外面
+			 * 请求：请求头和请求体     响应：响应头和响应体
+			 * 
+			 * 
+			 * POST和GET请求的使用：
+			 * 			1.如果请求的数据特别大或者需要上传数据，必须使用post请求
+			 * 			//get请求有大小限制：4kb
+			 * 			2.get请求相对来说没有posy安全，如果请求是机密的，使用post
+			 * 			3.如果仅仅是查询数据，数据展示，使用get
+			 * 			4.如果是处理增、删、改操作使用post
+			 * 
+			 * post和get请求都是向服务器发送数据（参数），然后的到响应
+			 * */
+			
+			
+			var oAjax = null;
+			if(window.XMLHttpRequest){
+				//创建请求对象  非IE
+				oAjax = new XMLHttpRequest();
+			}else{
+				//IE
+				oAjax = new ActiveXObject();
+			}
+			//open打开和服务器的连接
+			//oAjax.open('GET',"www.baidu.com?kw=22&ee=11",true);
+			oAjax.open('POST',"JSON/user.json",true);
+			//设置请求头   Content-type内容类型（MIME类型）
+			oAjax.setRequestHeader("Content-type","application/x-www-form-urlencode");
+			//用户输入的用户名和密码
+			var user = document.getElementById('userName').value;
+			var pass = document.getElementById('passWord').value
+			//参数拼接在send方法中
+			oAjax.send('userName='+user+"&passWord="+pass);
+			
+			//接受响应,   准备处理响应数据
+			oAjax.onreadystatechange = function(){
+				//状态码改变的时候，准备做什么
+				
+				if(oAjax.readyState == 4){
+					//状态码是4的时候处理数据
+					if(oAjax.status == 200){
+						//响应成功
+						console.log(oAjax.responseText);
+						//responseText 成功相应的数据
+						
+						//根据响应后返回的数据来判断是否注册成功
+						/*
+						 {
+							"code" : 0,
+							"content" : "用户名已经被注册"
+						 }
+
+						 * */
+					}else{
+						//调用失败之后处理方式
+						failfn();
+					}
+				}
+			}
+			
+			
+			
+			
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

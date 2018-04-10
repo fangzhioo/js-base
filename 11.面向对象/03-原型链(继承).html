@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			
+			function Cat(name){
+				this.name = name;
+				
+			}
+			function Dog(name){
+				this.name = name;
+				
+			}
+			
+			var cat1 = new Cat("大毛");
+			var dog1 = new Dog("二哈");
+			//cat1.bark("喵喵了");
+			
+/***********************这是一条华丽的分割线*******************************/
+			
+			
+			//定义一个动物构造器（把Cat，Dog他们相似特征的和行为抽离出来，放到他们的父类里）
+			function Animal(name){
+				this.name = name;
+				this.bark = function(vocie){
+					console.log(vocie);
+				}
+			}
+			console.log("猫的原型：",Cat.prototype);
+			console.log("狗的原型：",Dog.prototype);
+			
+			//new Animal()   创建一个动物对象  name  bark
+			console.log(new Animal());
+			
+			
+			//Cat.prototype   Cat的原型   
+			Cat.prototype = new Animal();
+			
+			var cat2 = new Cat('三毛');
+			//bark是从动物类（new Animal()）上继承下来的
+			cat2.bark('喵喵！')
+			
+			Dog.prototype = new Animal();
+			
+			var dog2 = new Dog('四吉');
+			////bark是从动物类（new Animal()）上继承下来的
+			dog2.bark('旺旺！');
+			
+			//给Animal动物的原型添加一个方法
+			Animal.prototype.eat = function(){
+				console.log("吃吃吃，就知道吃");
+			}
+	
+			cat2.eat();
+			
+			
+/***********************这是一条华丽的分割线*******************************/
+			
+			//生物
+			function Biology(){
+				this.breathing = function (){
+					console.log('呼吸雾霾');
+				}
+			}
+			
+			Animal.prototype.__proto__ = new Biology();
+			
+			Cat.prototype = new Animal();
+			Dog.prototype = new Animal();
+			
+			var cat3 = new Cat();
+			cat3.breathing();
+			cat3.eat();
+			cat3.bark('miaomiao')
+			
+			function ShortHairCat(){
+				
+			}
+			
+			ShortHairCat.prototype = new Cat();
+			var cat4 = new ShortHairCat();
+			
+			cat4.breathing();
+			cat4.eat();
+			cat4.bark('miao!!!')
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script>
+			
+			//上下文环境  ---- 词法环境
+			
+			//js解析和执行代码的过程   -----   预编译阶段（准备阶段） ----- 执行阶段
+			
+			
+			//全局的预编译
+			
+			
+			//console.log(a);//a is not defined
+			
+			console.log(a);//undefined
+			var a = 10;
+			
+			var b;
+			console.log(b);//undefined
+			
+			//console.log(c);//c is not defined
+			c = 10;
+			console.log(c);
+			/*
+			     预编译阶段 ----- 对代码进行扫描
+			      词法变量/词法环境/上下文环境{
+			      //用var声明的
+			      a:undefined,
+			      b:undefined,
+			      //不用var声明的变量不会扫描，不会存储到这里
+			     
+			      //函数声明，在预编译阶段会进行 赋值
+				  fn1:function (){console.log('fn1');}
+				  //函数表达式和用var声明的变量处理是一样的
+				  fn2:undefined
+				  this:window
+				  d:function d(){console.log("d");}
+				  fn3:function.....
+			   }
+			 * */
+			
+			console.log(fn1);
+			fn1();
+			//声明函数/函数声明
+			function fn1(){
+				console.log('fn1');
+			}
+			
+			
+			console.log(fn2);//undefined
+			//fn2();//fn2 is not a function
+			//函数表达式
+			var fn2 = function(){
+				console.log("fn2");
+			}
+			
+			//函数在js里是一等公民，所以如果有变量名和函数名相同，在预编译阶段会优先处理（存储）函数
+			console.log(d);
+			function d(){
+				console.log("d");
+			}
+			var d = 10;
+			console.log(d);
+			
+			//执行阶段
+			/*
+			  词法变量{
+			      a:10,
+			      b:undefined,
+			      //不用var声明的变量不会扫描，不会存储到这里
+			      c :10
+			      //函数声明，在预编译阶段会进行 赋值
+				  fn1:function (){console.log('fn1');}
+				  //函数表达式和用var声明的变量处理是一样的
+				  fn2:function(){console.log("fn2");}
+				  this:window
+				  d:10
+			 }
+			 * 
+			 * 
+			 * */
+			
+			function fn3(x){
+				console.log(a);
+//				var a = 10;
+				var b = 20;
+				//console.log(e);
+				e = 20;//没有var声明的是全局的变量（变量提升）
+				console.log(x);
+				function fn4(){
+					console.log('fn4');
+				}
+				/*
+				   是在函数执行的时候，会创建该函数的上下文环境{
+				 	a:undefined,
+				 	b:undefined,
+				 	fn4:function......，
+				 	x:100
+				 	函数在创建上下文的时候arguments进行赋值
+				 }
+				 * 
+				 * */
+			}
+			
+			fn3(100);
+			//fn3执行完毕，上下文环境销毁，函数内变量释放（闭包）
+			console.log(e);//20
+			
+			
+			/*
+			 预编译阶段上下文{
+			 	f: undefined
+			 	f1：function f1(){console.log('f1-f1');}
+			 }
+			 * */
+			var f = 10;
+			g = 20;
+			console.log(f1);
+			var f1 = function(){
+				console.log('f1');
+			}
+			//创建一个函数
+			function f1(){
+				console.log('f1-f1');
+			}
+		
+			f1();//f1  不是f1-f1
+			/*
+			 执行阶段上下文{
+			 	f: 10,
+			 	g :20
+			 	f1： function(){console.log('f1');}
+			 }
+			 * */
+			
+			
+			
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1 id='h1' class="biaoti dabiaoti">同学们，好好学习！</h1>
+		<img id='img1' src="http://www.qqjia.com/z/03/tu5374_5.jpg"/>
+		<script type="text/javascript">
+			//查找id为h1的标签，并打印
+			console.log(document.getElementById('h1'));
+			console.log(h1 instanceof Element);
+			var img = document.getElementsByTagName('img')[0];
+			console.log(img instanceof HTMLCollection);
+			console.log(img instanceof Element);
+			
+			//标签名 
+			console.log(h1.tagName);
+			console.log(img.tagName);
+			//id值
+			console.log(h1.id);
+			//class
+			console.log(h1.className);
+			
+			//更改h1的文本内容
+			h1.innerText = '哈哈哈哈哈。。。';
+			h1.setAttribute('style','border: solid thick gold;')
+			img.setAttribute('style','width: 600px;height: 600px;')
+			
+		</script>
+	</body>
+</html>

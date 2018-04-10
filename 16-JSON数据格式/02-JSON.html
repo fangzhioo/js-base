@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script>
+			
+			//JSON：Javascript Object Notation 是一种轻量级的交换数据格式
+			
+			//JSON格式来源于JS的字面量对象的结构
+			
+			//JSON本质是一个字符串，是有固定格式的字符串
+			
+			
+			//字面对象
+			var jsonStr = {
+				name: "小明",
+				age: 18,
+				dog: {
+					dogName: "大黄",
+					age: 1
+				},
+				friends: [{
+					friendName: "小红",
+					age: 17
+				}, {
+					friendName: "小强",
+					age: 19
+				}]
+			};
+			jsonStr[
+			//序列化
+			var myJson = JSON.stringify(jsonStr);
+			console.log(myJson);
+			console.log(typeof myJson);//string
+		//{"name":"小明","age":18,"dog":{"dogName":"大黄","age":1},"friends":[{"friendName":"小红","age":17},{"friendName":"小强","age":19}]}
+		
+		
+			//反序列化
+			var person = JSON.parse(myJson);//parse 解析
+			console.log(person);
+			console.log(typeof person);
+			
+			
+			//JSON的结构来源于js对象，可以把它看成js对象结构的子集，
+			//它的结构是有对象和数组组成，它的写法和js对象一样
+			/*语法：
+			 * 		1.并列的数据用，号表示
+			 * 		2.映射（键值对）用买好表示
+			 * 		3.并列数据的数组用[]括号表示
+			 * 		4.并列数据的对象用{}括号表示
+			 */
+			
+			/*
+			   JSON值的类型：
+			   		1.number类型：  1
+			 * 		2.boolean类型：true fasle
+			 * 		3.string类型  "a"
+			 * 		4.null 
+			 * 		5.数组  [1,2,3]
+			 * 		6.对象  {name:"tom"}
+			 * */
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

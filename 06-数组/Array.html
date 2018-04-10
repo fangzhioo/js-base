@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//数组   Array  官方定义的一个类型    存若干数据（有序）
+			
+			//1.字面量创建方式
+			var arr = [];//创建了一个空数组
+			
+			var arr1 = [1,,"abc",true,3.14];
+			console.log(arr1);//第二个元素是undefine
+			
+			//2.构造函数创建
+			var arr2 = new Array();//创建了一个空数组
+			//看一下变量的类型
+			console.log(typeof(arr1));
+			console.log(typeof(arr2));//object
+			
+			arr2 = new Array(1,2,3);//[1,2,3]
+			
+			//当只穿一个参数的时候，若果是一个数字，创建一个长度为这个数字的数组
+			var arr3 = new Array(20);//不是[20]，是创建一个长度为20的数组
+			console.log(arr3.length,arr3);//20  []
+			
+			//如果是负值，会报错
+			//arr3 = new Array(-2);
+			//Array.html:30 Uncaught RangeError: Invalid array length
+			console.log(arr3);
+			
+			var arr4 = [1,2,3,4];
+			//通过小标获取元素
+			console.log(arr4[0],arr4[5]);//1 undefined
+			//js中数组不存在数组越界
+			//可以通过小标添加新的元素
+			arr4[4] = 5;
+			console.log(arr4,arr4.length);
+			//length可读可写的属性
+			arr4.length = 20;
+			console.log(arr4,arr4.length);
+			//如果把长度设置成比原有数组长度小，会删除超出长度的元素
+			arr4.length = 3;
+			console.log(arr4,arr4.length);//[1, 2, 3] 3
+			
+			//数组得到遍历  for循环遍历
+			for(var i = 0; i < arr4.length; i++){
+				console.log(arr4[i]);
+			}
+			
+			//快速遍历for  in 遍历   据说性能上要比其他的便利快
+			for(var a in arr4){
+				//这里的变量a是数组的索引
+				console.log(a);
+			}
+			
+			//forEach   遍历，官方给我们提供的方法，需要传一个函数
+			//这个函数有一个隐形的参数，代表数组的元素
+			//函数内是遍历数组时对每个数组做什么操作 
+			//就是不支持break
+			arr4.forEach(function(num){
+				console.log(num);
+			});
+			
+			//push向数组末尾追加元素
+			console.log(arr4.push(3,4,5));
+			//pop 删除数组末尾的元素
+			console.log(arr4.pop());
+			//shift删除头部元素
+			console.log(arr4.shift())
+			//unshift 头部添加元素
+			console.log(arr3.unshift(1,2));
+			//join 把数组元素拼接成一个字符串（以某个字符串为连接符）
+			console.log(arr4.join('/'));//不传参就是直接连接""
+			var arr5 = ['a','b','c'];
+			//reverse 数组的倒序
+			console.log(arr5.reverse(),arr5);
+		
+			//concat 拼接两个数组,返回值是一个新的数组
+			console.log(arr5.concat(['d','e']));
+			//slice 截取数组的一部分,返回值是一个新数组
+			console.log(arr5.slice(0,3));
+			//第一个参数：起始位置  第二个参数：结束为止的前一个索引
+			console.log(arr5)
+			//splice 向数组添加数组元素，或者删除数组元素
+			console.log(arr5.splice(1,0,1),arr5);
+			//第一个参数：必须，起始位置（其实下标）
+			//第二个参数：必须，如果为0，表示不删除元素，如果为2，删除元素的长度
+			//第三、四..参数可以省略，替换的数组元素
+			console.log(arr5.splice(2,1,'w'),arr5);
+			
+			//把数组转成字符串
+			console.log(arr5.toString());
+			//index 从头部查找某个元素的索引（第一次出现的位置）
+			console.log(arr5.indexOf('a'));
+			//lastIndexOf  从尾部开始查找（第一次出现的位置）
+			console.log(arr5.lastIndexOf('a'))
+			
+			var arr6 = [1,6,3,8,5];
+			//sort排序  参数也是函数function，函数内是以何种方式去排序
+			//有两个隐藏参数
+			arr6.sort(function(num1,num2){
+				//num1和num2是数组里相邻的两个元素
+				
+				//这个函数必须要有返回值，是ture或false
+				return num1 - num2;//ture 是从大到小  false从小到大
+			})//原始的排序需要双层for循环
+			console.log(arr6);
+			
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

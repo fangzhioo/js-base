@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			//1、初始化
+			//字面量形式初始化
+			var arr = [1, 2, '3', 4, '5'];
+			console.log(arr);
+			console.log(arr.length);
+			
+			//new形式初始化
+			var arr2 = new Array(1, 2, '3');
+			console.log(arr2);
+			
+			//2、length
+			//使用length删除元素
+			arr.length = 4;
+			console.log(arr);
+			var arr3 = arr;
+			arr3.length = 2;
+			console.log(arr3);
+			
+			//3、访问数组元素
+			console.log(arr3[0]);
+			arr3[2] = 'abc';
+			console.log(arr3);
+			
+			//4、数组和字符串转化
+			var str = 'hello world welcome to zhaolanyuan';
+			//字符串-->数组
+			//参数1	分隔符	参数2	个数限制
+			var arr4 = str.split(' ', 2);
+			console.log(arr4);
+			//数组-->字符串
+			//参数1	连接符
+			var str2 = arr4.join('*');
+			console.log(str2);
+			//
+			var str3 = arr4.toString();
+			console.log(str3);
+			//Number变量调用，传入Number（整数），返回对应的进制形式
+			var value = 3;
+			console.log(value.toString(2));
+			
+			//5、数组常用方法
+			var arr5 = [1, 2, 3, 4, 5];
+			//push()  入栈
+			arr5.push(6);
+			console.log(arr5);
+			//pop()	  出栈
+			arr5.pop();
+			arr5.pop();
+			console.log(arr5);
+			//shift()/unshift()
+			//队首加入
+			arr5.unshift('a');
+			console.log(arr5);
+			//队首移除
+			arr5.shift();
+			console.log(arr5);
+			//slice() 规则同字符串，提取数组元素组成新数组返回
+			var arr6 = arr5.slice(1,2);
+			console.log(arr5);
+			console.log(arr6);
+			//concat() 规则同字符串，拼接数组
+			console.log(arr6.concat(['a', 'b', 'c']));
+			//splice() 删除子数组，参数1 删除的起始位置  参数2 删除的长度
+			var arr7 = ['a', 'b', 'c', 'd'];
+			var arr8 = arr7.splice(1,2);
+			console.log(arr7);
+			console.log(arr8);
+			//indexOf()/lastIndexOf() 
+			//查找元素的位置，参数1  查找的元素   参数2  开始查找的位置
+			var arr9 = [1, 2, 3, 4, 5, 6, 7, 5, 10];
+			//从前往后
+			console.log(arr9.indexOf(5, 6));
+			//从后往前
+			console.log(arr9.lastIndexOf(11));
+			
+			
+		</script>
+	</body>
+</html>

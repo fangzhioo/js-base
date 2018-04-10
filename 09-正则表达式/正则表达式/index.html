@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			//1、   test()
+			var reg = new RegExp("abc");
+			var str = 'abc';
+			console.log(reg.test(str));
+			
+			//2、	search()
+			var str1 = "abdddabc";
+			var reg1 = /ca/;
+			console.log(str1.search(reg1));
+			
+			//3、	match()
+			var str2 = "ab2432ab234234ab";
+			var reg2 = /ab/;//非全局
+			var reg3 = /ab/g;//全局
+			console.log(str2.match(reg2));
+			console.log(str2.match(reg3));
+			
+			
+		</script>
+	</body>
+</html>

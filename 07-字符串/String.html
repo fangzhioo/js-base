@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script>
+			
+			//字符串    字符的集合
+			//字面量创建
+			var str = "abc";//双引号或单引号代表的是字符串
+			//构造函数创建
+			var str2 = new String('abv');
+			console.log(typeof(str))//String
+			console.log(typeof(str2))//object
+			
+			//在js中String类型的的字符串也可以使用Object类型中包含的属性和方法
+			//js会默认的将String类型转换成Object
+			
+			console.log(str2.length);
+			//charAt 获取指定下标的字符
+			console.log(str2.charAt(1));
+			//charCodeAt 返回值是一个ASCII码
+			console.log(str2.charCodeAt(1));
+			//fromCharCode 把ASCII码转成相应的字符
+			//String.方法  这种调用的方法，我们称之为静态方法
+			console.log(String.fromCharCode(65));
+			//indexOf 从头找字符，返回索引
+			console.log(str2.indexOf('a'));
+			//lastIndexOf 从尾部找字符，返回索引
+			console.log(str2.lastIndexOf('a'));
+			//replace 替换子串  第一次出现的子串会被替换
+			console.log(str2.replace('a',"*****"));
+			//gi  g全局 i忽略大小写  使用正则可以把所有匹配的替换掉
+			console.log(str2.replace(/a/gi,"******"));
+			//substr substring 截取子串  参数：索引  
+			console.log(str2.substr(2,1));//第二个参数是长度
+			console.log(str2.substring(2,3))//第二个参数结束位置前的索引
+			
+			//toUpperCase 转大写  转小写toLowerCase
+			console.log(str2.toUpperCase());
+			console.log(str2.toLowerCase())
+			
+			//字符串相等的判断
+//			if('abc' === 'abc'){
+//				console.log('===');
+//			}
+			console.log('abc' === 'abc');//true
+			//=== 绝对相等  值相等 类型也相同
+			console.log(10 == '10');//true
+			//== 值相等
+			console.log(10  === '10');//false
+			
+			//大多数的情况下，如果是对象判断，就是用===，值判断使用==
+		</script>
+		
+	</body>
+</html>

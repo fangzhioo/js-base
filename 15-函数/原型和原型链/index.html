@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			function Cat(name){
+				
+				this.name=name;
+				this.showName=function(){
+					console.log(this.name);
+				}//实例方法
+				
+			}
+			//Object实例
+			Cat.prototype.father='lao黄';
+			Cat.prototype.showNameAgain=function(){
+				console.log(this.name);				
+			}//原型属性
+			//会改变原型的指向
+			Cat.prototype={
+				mother:'Mom',
+			};
+			var dahuang =new Cat('dahuang');
+			
+			console.log(Cat.prototype);
+			dahuang.showName();
+			dahuang.showNameAgain();
+			console.log(dahuang.name);
+			console.log(dahuang.father);
+			
+			function BosiCat(){
+				this.name='小波'
+				this.father="七舅姥爷";//实例属性			
+			}
+			//使用prototype，让BosiCat继承于Cat （BosiCat是Cat的子类，Cat是BosiCat的父类）
+			//Cat的实例
+			BosiCat.prototype=new Cat('xiaohuanghuang');
+			var xiaobo =new BosiCat();
+			console.log('-------'+xiaobo.father);
+			var dabo = new BosiCat();
+			console.log(dabo.name);
+			xiaobo.showName();//原型方法调用
+			xiaobo.toString();
+			
+		</script>
+	</body>
+</html>
